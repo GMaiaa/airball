@@ -38,3 +38,11 @@ export const InputField = styled(TextInput)<InputFieldProps>`
     }
   `}
 `;
+
+export const Label = styled.Text`
+  ${({theme}) => css`
+        color: ${theme.COLORS.GRAY_100};
+        font-size: ${theme.FONT_SIZE.SM}px;
+        font-family: ${theme.FONT_FAMILY.REGULAR};
+    `};
+`
