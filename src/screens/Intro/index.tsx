@@ -1,15 +1,12 @@
-import { CenterImage, CommandCentral, Container, Content, HighlightText, Logo, LogoWrapper, Span } from "./styles";
-import LogoImg from "@assets/logo.png"
+import { CenterImage, CommandCentral, Container, Content, HighlightText, Span } from "./styles";
 import Illustration1V1 from "@assets/illustration1v1.png"
 import { Button } from "@components/Button";
+import { Logo } from "@components/Logo";
 
 export function Intro() {
     return (
         <Container>
-            <LogoWrapper>
-                <Logo source={LogoImg} />
-            </LogoWrapper>
-
+           <Logo/>
             <Content>
                 <CenterImage source={Illustration1V1} />
 

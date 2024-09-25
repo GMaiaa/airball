@@ -12,11 +12,11 @@ export const Container = styled(TouchableOpacity).attrs<Props>(({ theme, type })
 })) <Props>`
     background-color: ${({ theme, type }) =>
         type === 'FILLED' ? theme.COLORS.ORANGE : 'transparent'};
-    padding: 10px;
-    border-radius: 5px;
+    padding: 10px 30px; 
+    border-radius: 25px;
     border: ${({ theme, type }) =>
-    type === 'TRANSPARENT' ? `1px solid ${theme.COLORS.GRAY_100}` : 'none'};
-  `;
+        type === 'TRANSPARENT' ? `1px solid ${theme.COLORS.GRAY_100}` : 'none'};
+`;
 
   export const Title = styled.Text`
      ${({ theme }) => css`
