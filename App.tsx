@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold ,Poppins_700Bold } from '@expo-google-fonts/poppins';
 
 import theme from './src/theme';
-import { SignIn } from '@screens/SignIn';
+import { CreateCourt } from '@screens/CreateCourt';
 import { Loading } from '@components/Loading';
 
 
@@ -18,7 +18,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <SignIn/> : <Loading/> }
+        { fontsLoaded ? <CreateCourt/> : <Loading/> }
     </ThemeProvider>
   );
 }

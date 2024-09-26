@@ -4,8 +4,8 @@ export const Container = styled.View`
 `
 
 export const Title = styled.Text`
-    margin-left:48;
-    margin-top:128;
+    margin-left:48px;
+    margin-top:128px;
 
     ${({theme}) => css`
         color: ${theme.COLORS.GRAY_100};
