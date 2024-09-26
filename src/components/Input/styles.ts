@@ -13,7 +13,7 @@ export const Container = styled.View`
   border-radius: 5px;
 `;
 
-export const InputField = styled(TextInput)<InputFieldProps>`
+export const InputField = styled(TextInput) <InputFieldProps>`
   ${({ theme, isFocused, hasContent }) => css`
     background-color: ${theme.COLORS.WHITE};
     padding: 12px;
@@ -23,8 +23,7 @@ export const InputField = styled(TextInput)<InputFieldProps>`
     font-family: ${theme.FONT_FAMILY.REGULAR};
     
     /* Lógica da borda */
-    border: 2px solid ${
-      hasContent ? theme.COLORS.GRAY_200 : isFocused ? theme.COLORS.GRAY_100 : theme.COLORS.GRAY_300
+    border: 2px solid ${hasContent ? theme.COLORS.GRAY_200 : isFocused ? theme.COLORS.GRAY_100 : theme.COLORS.GRAY_300
     };
     
     /* Estilo do cursor */
@@ -40,7 +39,8 @@ export const InputField = styled(TextInput)<InputFieldProps>`
 `;
 
 export const Label = styled.Text`
-  ${({theme}) => css`
+  margin-bottom: 7;
+  ${({ theme }) => css`
         color: ${theme.COLORS.GRAY_100};
         font-size: ${theme.FONT_SIZE.SM}px;
         font-family: ${theme.FONT_FAMILY.REGULAR};
