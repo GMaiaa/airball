@@ -26,6 +26,7 @@ export default {
       SM: 14,
       MD: 16,
       LG: 18,
-      XL: 24
+      XL: 20,
+      XXL: 24
     }
   };
