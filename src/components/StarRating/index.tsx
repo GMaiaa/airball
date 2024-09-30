@@ -4,14 +4,17 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Container, StarItem, EmptySpace } from './styles';
 import theme from '@theme/index';
 
-const StarRating = ({ rating, onRate }) => {
+interface StarRatingProps {
+  rating: number;
+  onRate: (newRating: number) => void;
+}
+
+const StarRating: React.FC<StarRatingProps> = ({ rating, onRate }) => {
   const [selectedRating, setSelectedRating] = useState(rating);
 
   const handlePress = (newRating: number) => {
     setSelectedRating(newRating);
     onRate(newRating);
-    console.log('rating', rating)
-    console.log('selectedRating', selectedRating)
   };
 
   return (
@@ -21,7 +24,7 @@ const StarRating = ({ rating, onRate }) => {
           {selectedRating >= starIndex ? (
             <FontAwesome name="star" size={24} color={theme.COLORS.GRAY_100} />
           ) : (
-            <FontAwesome name="star-o" size={24} color={theme.COLORS.GRAY_100} />
+            <FontAwesome name="star-o" size={24} color={theme.COLORS.GRAY_300} />
           )}
         </StarItem>
       ))}

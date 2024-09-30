@@ -16,8 +16,9 @@ export const Container = styled.View`
 export const InputField = styled(TextInput) <InputFieldProps>`
   ${({ theme, isFocused, hasContent }) => css`
     background-color: ${theme.COLORS.WHITE};
-    width: 300px;
+    width: 100%;
     padding: 12px;
+    margin-bottom: 20px;
     border-radius: 5px;
     color: ${theme.COLORS.GRAY_100};
     font-size: ${theme.FONT_SIZE.MD}px;
