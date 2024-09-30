@@ -54,6 +54,17 @@ export const ProgressBar = styled.View`
     z-index: 2; 
 `;
 
+export const FullProgressBar = styled.View`
+    position: absolute; 
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;  
+    height: 2px;
+    background-color: ${({ theme }) => theme.COLORS.ORANGE};
+    z-index: 2; 
+`;
+
 export const RemainingProgress = styled.View`
     position: absolute; 
     top: 0;
