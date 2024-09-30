@@ -7,7 +7,8 @@ export const Container = styled.View`
 `
 
 export const Content = styled.View`
-    padding: 0 30px;
+    padding: 0 48px;
+    height: 100vh;
 `
 
 export const Title = styled.Text`
@@ -22,7 +23,7 @@ export const Title = styled.Text`
 `
 
 export const Description = styled.Text`
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     ${({ theme }) => css`
         color: ${theme.COLORS.GRAY_100};
         font-size: ${theme.FONT_SIZE.SM}px;
@@ -32,9 +33,28 @@ export const Description = styled.Text`
 
 export const ButtonArea = styled.View`
     flex: 1;
-    margin-top:224;
+    justify-content: flex-end;
     width:fit-content;
     align-self: center;
+    margin-bottom: 80px;
+`
+
+export const FileInput = styled.View`
+    background-color: transparent;
+    margin-top: 30px;
+    width: 100%;
+    height: 90px;
+    border: 2px dotted ${({ theme }) => theme.COLORS.GRAY_300};
+    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+    color: #000;
+    color: ${({ theme }) => theme.COLORS.GRAY_300};
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    justify-content: center;
 `
 
 export const ProgressContainer = styled.View`
@@ -46,6 +66,17 @@ export const ProgressContainer = styled.View`
 export const ProgressBar = styled.View`
     position: absolute; 
     width: 50%;
+    top: 0;
+    left: 0;
+    right: 0;  
+    height: 2px;
+    background-color: ${({ theme }) => theme.COLORS.ORANGE};
+    z-index: 2; 
+`;
+
+export const FullProgressBar = styled.View`
+    position: absolute; 
+    width: 100%;
     top: 0;
     left: 0;
     right: 0;  
