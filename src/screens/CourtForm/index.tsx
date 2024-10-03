@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Input } from "@components/Input";
-import { ButtonArea, Container, Content, Description, FileInput, FullProgressBar, ProgressBar, ProgressContainer, RemainingProgress, Title } from "./styles";
+import { ButtonArea, Container, Content, Description, FileInput, FullProgressBar, Placeholder, ProgressBar, ProgressContainer, RemainingProgress, Title } from "./styles";
 import { Button } from "@components/Button";
-import { View } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Label } from '@components/Label';
 import StarRating from '@components/StarRating';
-import { launchImageLibrary } from 'react-native-image-picker';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import * as ImagePicker from 'expo-image-picker';
 
 export function CourtForm() {
     const [formPage, setFormPage] = useState(1);
@@ -25,16 +24,19 @@ export function CourtForm() {
         }
     }
 
-    const selectImage = () => {
-        launchImageLibrary({ mediaType: 'photo' }, (response) => {
-            if (response.didCancel) {
-                console.log('Usuário cancelou a seleção de imagem');
-            } else if (response.error) {
-                console.log('Erro ao selecionar imagem:', response.error);
-            } else {
-                setCourtImage(response.assets[0]);
-            }
+    const selectImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         });
+
+        console.log(result);
+
+        if (!result.canceled) {
+            setCourtImage(result.assets[0]);
+        }
     };
 
     function handleSubmit() {
@@ -44,7 +46,9 @@ export function CourtForm() {
             address: courtAddress,
             light_rating: lightRating,
             hoop_rating: hoopRating,
+            image: courtImage,
         };
+        console.log(data);
     }
 
     return (
@@ -58,7 +62,9 @@ export function CourtForm() {
                 {formPage === 1 && (
                     <Content>
                         <Title>Informações Gerais da Quadra</Title>
-                        <Description>Aqui você irá preencher as principais informações<br /> da quadra</Description>
+                        <Description>
+                            Aqui você irá preencher as principais informações da quadra
+                        </Description>
                         <Input
                             label="Nome"
                             placeholder="Quadra da Catitu"
@@ -96,9 +102,14 @@ export function CourtForm() {
                             <Label text='Qualidade dos aros' />
                             <StarRating rating={hoopRating} onRate={setHoopRating} />
                         </View>
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-                            <FileInput onPress={selectImage}>Anexe uma imagem da quadra</FileInput>
+                        <View style={{ marginTop: 20 }}>
+                            <FileInput onPress={selectImage}>
+                                {courtImage ? (<Image source={{ uri: courtImage.uri }} style={{ width: '100%', height: '100%' }} />) : (
+                                    <Placeholder>Anexe uma imagem da quadra</Placeholder>
+                                )}
+                            </FileInput>
                         </View>
+
                         <ButtonArea>
                             <Button title="Finalizar" type="FILLED" onPress={handleFormContinue} />
                         </ButtonArea>

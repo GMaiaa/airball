@@ -12,8 +12,8 @@ export const Content = styled.View`
 `
 
 export const Title = styled.Text`
-    margin-top:128;
-    margin-bottom:8;
+    margin-top: 128px;
+    margin-bottom: 8px;
 
     ${({ theme }) => css`
         color: ${theme.COLORS.GRAY_100};
@@ -32,18 +32,22 @@ export const Description = styled.Text`
 `
 
 export const ButtonArea = styled.View`
-    flex: 1;
-    justify-content: flex-end;
-    width:fit-content;
+    position: absolute;
+    top: 590px;
+    width:80%;
     align-self: center;
-    margin-bottom: 80px;
+    margin-top: 100px;
 `
 
-export const FileInput = styled.View`
+export const FileInput = styled.Pressable`
     background-color: transparent;
-    margin-top: 30px;
+    margin-top: 10px;
+    align-items: center;
     width: 100%;
-    height: 90px;
+    min-height: 150px;
+    max-height: 200px;
+    justifyContent: center;
+    alignItems: center;
     border: 2px dotted ${({ theme }) => theme.COLORS.GRAY_300};
     font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
     color: #000;
@@ -94,3 +98,9 @@ export const RemainingProgress = styled.View`
     background-color: ${({ theme }) => theme.COLORS.GRAY_100};
     z-index: 1; 
 `;
+
+export const Placeholder = styled.Text`
+    color: ${({ theme }) => theme.COLORS.GRAY_300};
+    font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+    fontSize: 16px;
+`
