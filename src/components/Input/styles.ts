@@ -41,7 +41,7 @@ export const InputField = styled(TextInput) <InputFieldProps>`
 `;
 
 export const Label = styled.Text`
-  margin-bottom: 7;
+  margin-bottom: 7px;
   ${({ theme }) => css`
         color: ${theme.COLORS.GRAY_100};
         font-size: ${theme.FONT_SIZE.SM}px;
