@@ -1,15 +1,29 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from '@screens/Home'; 
 import Matchs from '@screens/Matchs';
 import News from '@screens/News'; 
 import Menu from '@screens/Menu'; 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, FontAwesome, Entypo, FontAwesome6, Ionicons } from '@expo/vector-icons';
 import { Container, NewCourt, MarginRight, MarginLeft, screenOptions, tabBarLabelStyle } from './styles';
 
-
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function MenuStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="Menu" 
+        component={Menu} 
+        options={{ headerShown: false }} 
+      />
+      {/* Adicione outras telas relacionadas ao Menu aqui */}
+    </Stack.Navigator>
+  );
+}
 
 function TabBar() {
   return (
@@ -61,7 +75,7 @@ function TabBar() {
           />
           <Tab.Screen 
             name="Menu" 
-            component={Menu} 
+            component={MenuStack} 
             options={{ 
               headerShown: false,
               tabBarIcon: ({ color}) => (

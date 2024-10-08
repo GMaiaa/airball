@@ -1,23 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Container, HeaderNews, NotIcon, TitleHeader } from './styles';
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>News</Text>
-    </View>
+    <Container>
+      <HeaderNews>
+        <TitleHeader> Novidades </TitleHeader>
+        <NotIcon name='notifications'/>
+      </HeaderNews>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,              // Ocupar toda a tela
-    justifyContent: 'center', // Centralizar verticalmente
-    alignItems: 'center',  // Centralizar horizontalmente
-    backgroundColor: '#fff', // Cor de fundo
-  },
-  text: {
-    fontSize: 24,        // Tamanho da fonte
-    color: '#333',       // Cor do texto
-  },
-});
