@@ -3,7 +3,6 @@ import Entypo from "@expo/vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 
-// Ajuste no Container para o alinhamento correto
 export const Container = styled.View`
   width: 100%;
   padding: 20px 20px;

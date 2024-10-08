@@ -1,23 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Container, Content, CourtWrapper, HeaderWrapper, Icon, IconButton, Title, TitleSection } from './styles';
+import { Header } from '@components/Header';
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
-    </View>
+   <Container>
+    <Header showHomeVersion/>
+    <Content>
+      <Title> Bem vindo ao AirBall! Pronto para dominar a quadra? </Title>
+
+      <CourtWrapper>
+        <HeaderWrapper>
+        <TitleSection> Quadras </TitleSection>
+        <View style={{gap: 4, flexDirection: "row" }}>
+          <IconButton><Icon name='map'/></IconButton>
+          <IconButton><Icon name='menu'/></IconButton>
+        </View>
+        </HeaderWrapper>
+        
+      </CourtWrapper>
+    </Content>
+   </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,              // Ocupar toda a tela
-    justifyContent: 'center', // Centralizar verticalmente
-    alignItems: 'center',  // Centralizar horizontalmente
-    backgroundColor: '#fff', // Cor de fundo
-  },
-  text: {
-    fontSize: 24,        // Tamanho da fonte
-    color: '#333',       // Cor do texto
-  },
-});
