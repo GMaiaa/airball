@@ -5,6 +5,7 @@ import { useFonts, Poppins_400Regular, Poppins_600SemiBold ,Poppins_700Bold } fr
 import theme from './src/theme';
 import { CreateCourt } from '@screens/CreateCourt';
 import { Loading } from '@components/Loading';
+import TabBar from '@components/TabBar';
 
 
 
@@ -18,7 +19,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <CreateCourt/> : <Loading/> }
+        { fontsLoaded ? <TabBar/> : <Loading/> }
     </ThemeProvider>
   );
 }
