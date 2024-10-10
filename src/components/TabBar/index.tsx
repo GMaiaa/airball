@@ -12,19 +12,6 @@ import { Container, NewCourt, MarginRight, MarginLeft, screenOptions, tabBarLabe
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-function MenuStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen 
-        name="Menu" 
-        component={Menu} 
-        options={{ headerShown: false }} 
-      />
-      {/* Adicione outras telas relacionadas ao Menu aqui */}
-    </Stack.Navigator>
-  );
-}
-
 function TabBar() {
   return (
     <NavigationContainer>
@@ -75,7 +62,7 @@ function TabBar() {
           />
           <Tab.Screen 
             name="Menu" 
-            component={MenuStack} 
+            component={Menu} 
             options={{ 
               headerShown: false,
               tabBarIcon: ({ color}) => (

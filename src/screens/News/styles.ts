@@ -8,13 +8,13 @@ export const Container = styled.View`
 
 export const HeaderNews = styled.View`
   flex-direction: row;
-  align-items: center; /* Centraliza verticalmente */
-  padding: 16px; /* Adiciona espaçamento ao redor do cabeçalho */
+  align-items: center; 
+  padding: 16px; 
 `;
 
 export const TitleHeader = styled.Text`
-  flex: 1; /* Faz o título ocupar o espaço disponível */
-  text-align: center; /* Centraliza o texto horizontalmente */
+  flex: 1; 
+  text-align: center; 
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
     font-size: ${theme.FONT_SIZE.XXL}px;
@@ -26,5 +26,6 @@ export const NotIcon = styled(Ionicons).attrs(({ theme }) => ({
   size: 24,
   color: theme.COLORS.GRAY_100,
 }))`
-  margin-left: auto; /* Move o ícone para a direita */
+  right: 10px;
+  position: absolute;
 `;
