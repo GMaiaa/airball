@@ -13,6 +13,8 @@ export const Content = styled.View`
   align-items: center;
   text-align: center;
   width: 400px;
+  margin-botton:20px;
+  bottom: 50px;
 `
 
 export const ImageCourt = styled.Image`

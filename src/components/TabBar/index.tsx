@@ -4,10 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '@screens/Home'; 
 import Matchs from '@screens/Matchs';
-import News from '@screens/News'; 
+import News from '@screens/News';
+import CreateCourt from '@screens/CreateCourt';
 import Menu from '@screens/Menu'; 
+import ButtonNew from '@components/ButtonNew'
 import { Feather, FontAwesome, Entypo, FontAwesome6, Ionicons } from '@expo/vector-icons';
-import { Container, NewCourt, MarginRight, MarginLeft, screenOptions, tabBarLabelStyle } from './styles';
+import { Container, MarginRight, MarginLeft, screenOptions, tabBarLabelStyle } from './styles';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -47,14 +49,20 @@ function TabBar() {
             options={{ 
               headerShown: false,
               tabBarIcon: ({ color, size }) => (
-                <MarginRight>
                   <FontAwesome6 name="basketball" size={size} color={color} />
-                </MarginRight>
               ),
-              tabBarLabelStyle: {
-                ...tabBarLabelStyle,
-                marginRight: 50,
-              } 
+              tabBarLabelStyle,
+            }} 
+          />
+          <Tab.Screen 
+            name="Novo" 
+            component={CreateCourt} 
+            options={{ 
+              tabBarLabel:'',
+              headerShown: false,
+              tabBarIcon: ({ color, size }) => (
+                <ButtonNew/>
+              )
             }} 
           />
           <Tab.Screen 
@@ -63,19 +71,14 @@ function TabBar() {
             options={{ 
               headerShown: false,
               tabBarIcon: ({ color, size }) => (
-                <MarginLeft>
                   <FontAwesome name="newspaper-o" size={size} color={color} />
-                </MarginLeft>
               ),
-              tabBarLabelStyle: {
-                ...tabBarLabelStyle,
-                marginLeft: 50,
-              } 
+              tabBarLabelStyle,
             }} 
           />
           <Tab.Screen 
             name="Menu" 
-            component={MenuStack} 
+            component={Menu} 
             options={{ 
               headerShown: false,
               tabBarIcon: ({ color}) => (
@@ -85,11 +88,6 @@ function TabBar() {
             }} 
           />
         </Tab.Navigator>
-
-        <NewCourt>
-          <Ionicons name="add" size={24} color="#FFFFFF" />
-        </NewCourt>
-
       </Container>
     </NavigationContainer>
   );

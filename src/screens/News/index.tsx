@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Container, HeaderNews, NotIcon, TitleHeader } from './styles';
 
-export default function Home() {
+export default function Menu() {
   return (
     <Container>
       <HeaderNews>
