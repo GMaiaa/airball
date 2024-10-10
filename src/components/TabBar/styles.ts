@@ -6,19 +6,6 @@ export const Container = styled.View`
   width: '100%';
 `;
 
-export const NewCourt = styled.TouchableOpacity`
-  position: absolute;
-  bottom: 19px;
-  left: 50%;
-  margin-left: -35px;
-  background-color: ${theme.COLORS.ORANGE};
-  border-radius: 20px; 
-  width: 80px;
-  height: 60px; 
-  align-items: center;
-  justify-content: center;
-`;
-
 export const MarginRight = styled.View`
   margin-right: 50px;
 `;
