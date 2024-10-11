@@ -1,23 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Header } from "@components/Header";
+import { HeaderMatchs,TitleHeader,Container,FilterButton} from './styles';
+import TransparentButton from '@components/TransparentButton';
 
 export default function Matchs() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Matchs</Text>
-    </View>
+    <Container>
+      <Header/>
+      <HeaderMatchs>
+        <TitleHeader>Suas Partidas</TitleHeader>
+        <FilterButton>
+        <TransparentButton title='Filtrar' width={150} height={45}/>
+        </FilterButton>
+      </HeaderMatchs>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,              // Ocupar toda a tela
-    justifyContent: 'center', // Centralizar verticalmente
-    alignItems: 'center',  // Centralizar horizontalmente
-    backgroundColor: '#fff', // Cor de fundo
-  },
-  text: {
-    fontSize: 24,        // Tamanho da fonte
-    color: '#333',       // Cor do texto
-  },
-});
