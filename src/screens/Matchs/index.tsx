@@ -1,18 +1,43 @@
 import React from 'react';
+import { ScrollView } from 'react-native'; // Importe ScrollView
 import { Header } from "@components/Header";
-import { HeaderMatchs,TitleHeader,Container,FilterButton} from './styles';
+import { HeaderMatchs, TitleHeader, Container, FilterButton, Line } from './styles';
 import TransparentButton from '@components/TransparentButton';
+import CardComponent from '@components/MatchCard';
+
+
 
 export default function Matchs() {
   return (
     <Container>
-      <Header/>
+      <Header />
       <HeaderMatchs>
         <TitleHeader>Suas Partidas</TitleHeader>
         <FilterButton>
-        <TransparentButton title='Filtrar' width={150} height={45}/>
+          <TransparentButton title='Filtrar' width={131} height={45} />
         </FilterButton>
       </HeaderMatchs>
+      <Line />
+      <ScrollView>
+        <CardComponent 
+          title="Ibirapuera Tarde" 
+          timestamp="15 Horas - Todos os dias" 
+          location="Parque Ibirapuera" 
+          userCount="10" 
+        />
+        <CardComponent 
+          title="Sesc Paulista" 
+          timestamp="15 Horas - Todos os dias" 
+          location="Avenida Paulista - Sesc Paulista" 
+          userCount="10" 
+        />
+        <CardComponent 
+          title="Sesc Itaquera" 
+          timestamp="15 Horas - Todos os dias" 
+          location="Itaquera - Sesc Itaquera" 
+          userCount="10" 
+        />
+      </ScrollView>
     </Container>
   );
 }

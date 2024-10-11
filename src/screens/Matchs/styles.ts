@@ -12,8 +12,8 @@ export const TitleHeader = styled.Text`
   margin-top: 28px;
   margin-bottom: 20px; /* Espaçamento abaixo do título */
   ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_100};
-    font-size: ${theme.FONT_SIZE.XXL}px;
+    color: white;
+    font-size: ${theme.FONT_SIZE.XXL};
     font-family: ${theme.FONT_FAMILY.BOLD};
   `}
 `;
@@ -21,6 +21,16 @@ export const TitleHeader = styled.Text`
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+`;
+
+
+export const Line = styled.View`
+height: 1px;
+background-color:white;
+margin-top:10px;
+width:90%;
+align-self:center;
+margin-bottom:38px;
 `;
 
 export const FilterButton = styled.View`
