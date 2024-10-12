@@ -13,7 +13,7 @@ export const TitleHeader = styled.Text`
   margin-bottom: 20px; /* Espaçamento abaixo do título */
   ${({ theme }) => css`
     color: white;
-    font-size: ${theme.FONT_SIZE.XXL};
+    font-size: ${theme.FONT_SIZE.XXL}px;
     font-family: ${theme.FONT_FAMILY.BOLD};
   `}
 `;

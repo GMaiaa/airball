@@ -1,5 +1,13 @@
 import styled, { css } from 'styled-components/native';
 
+
+/*
+  O código utiliza duas opções de tamanho: 'small' e 'large'.
+  A opção 'small' reduz as dimensões do cartão, imagens e textos para apresentar um layout mais compacto, 
+  enquanto a opção 'large' utiliza dimensões maiores para um layout mais espaçoso e legível.
+*/
+
+
 interface CardProps {
   size?: 'large' | 'small';
   width?: number;

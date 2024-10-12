@@ -4,6 +4,8 @@ import { Container, Content, CourtWrapper, HeaderWrapper, Icon, IconButton, Titl
 import { Header } from '@components/Header';
 import { CourtCard } from '@components/CourtCard';
 import { ListEmpty } from '@components/ListEmpty';
+import CardComponent from '@components/MatchCard';
+
 
 export default function Home() {
   let courts = [
@@ -11,6 +13,11 @@ export default function Home() {
     { title: "Quadra da Jacui", distance: 2.8, photo: "https://www.jornaldevinhedo.com.br/wp-content/uploads/2019/09/16019_QuadraRep-1.jpg" },
     { title: "Quadra da Jacui", distance: 2.8, photo: "https://www.jornaldevinhedo.com.br/wp-content/uploads/2019/09/16019_QuadraRep-1.jpg" }
     
+  ];
+
+  let popularGames = [
+    { title: "Sesc Consolação", timestamp: "2 hours", location: "São Paulo", userCount: "22" },
+    { title: "Sesc Itaquera", timestamp: "15 Horas - Todos os dias", location: "Itaquera", userCount: "10" },
   ];
 
   return (
@@ -42,6 +49,29 @@ export default function Home() {
             )}
           />
         </CourtWrapper>
+
+        <CourtWrapper>
+          <HeaderWrapper>
+            <TitleSection> Jogos Populares </TitleSection>
+          </HeaderWrapper>
+          
+          <FlatList
+            data={popularGames}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <CardComponent 
+                title={item.title} 
+                timestamp={item.timestamp} 
+                location={item.location} 
+                userCount={item.userCount} 
+                size="small"
+              />
+            )}
+            horizontal
+            style={{ height: 180 }}
+          />
+        </CourtWrapper>
+
       </Content>
     </Container>
   );

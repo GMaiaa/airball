@@ -1,17 +1,5 @@
 import React from 'react';
-import {
-  Card,
-  Title,
-  ProfileRow,
-  ProfilePic,
-  UserIcon,
-  GhostText,
-  Timestamp,
-  Location,
-  PlayButton,
-  PlayText,
-  LocationContainer,
-} from './styles';
+import {Card,Title,ProfileRow,ProfilePic,UserIcon,GhostText,Timestamp,Location,PlayButton,PlayText,LocationContainer} from './styles';
 import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
