@@ -18,7 +18,11 @@ export default function Matchs() {
         </FilterButton>
       </HeaderMatchs>
       <Line />
-      <ScrollView>
+      <ScrollView
+        contentContainerStyle={{
+          alignItems: 'center',
+        }}
+      >
         <CardComponent 
           title="Ibirapuera Tarde" 
           timestamp="15 Horas - Todos os dias" 
