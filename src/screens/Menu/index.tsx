@@ -1,23 +1,49 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { TouchableOpacity, View } from "react-native";
+import {
+  Container,
+  Icon,
+  IconButton,
+  ProfilePic,
+  UserInfoContainer,
+  UserName,
+  UserPositionContainer,
+  UserPosition,
+  UserNamePosition,
+} from "./styles";
+import theme from "../../theme"; // Ajuste o caminho conforme sua estrutura
+import { Feather } from "@expo/vector-icons"; // Importe o ícone que deseja usar
 
 export default function Menu() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Menu</Text>
-    </View>
+    <Container>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          padding: 20,
+        }}
+      >
+        <IconButton>
+          <Icon name="cross" />
+        </IconButton>
+      </View>
+
+      <UserInfoContainer>
+        <ProfilePic size="large" source={require("@assets/avatar.png")} />
+        <View style={{ marginLeft: 15 }}>
+          <UserNamePosition>
+
+          <UserName>Nome do Usuário</UserName>
+          <UserPositionContainer>
+            <UserPosition>Armador</UserPosition>
+            <IconButton>
+              <Feather name="edit" size={20} color={theme.COLORS.GRAY_100} />
+            </IconButton>
+          </UserPositionContainer>
+          </UserNamePosition>
+        </View>
+      </UserInfoContainer>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,              // Ocupar toda a tela
-    justifyContent: 'center', // Centralizar verticalmente
-    alignItems: 'center',  // Centralizar horizontalmente
-    backgroundColor: '#fff', // Cor de fundo
-  },
-  text: {
-    fontSize: 24,        // Tamanho da fonte
-    color: '#333',       // Cor do texto
-  },
-});

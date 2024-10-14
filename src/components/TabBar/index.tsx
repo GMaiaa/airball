@@ -6,8 +6,8 @@ import Home from '@screens/Home';
 import Matchs from '@screens/Matchs';
 import News from '@screens/News';
 import CreateCourt from '@screens/CreateCourt';
+import ButtonNew from '@components/ButtonNew';
 import Menu from '@screens/Menu'; 
-import ButtonNew from '@components/ButtonNew'
 import { Feather, FontAwesome, Entypo, FontAwesome6, Ionicons } from '@expo/vector-icons';
 import { Container, MarginRight, MarginLeft, screenOptions, tabBarLabelStyle } from './styles';
 
