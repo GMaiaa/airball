@@ -11,7 +11,7 @@ export default function CreateCourt() {
                 <ImageCourt source={CourtIllustration} />
                 <Title> Adicione uma nova quadra </Title>
                 <Description> Fortaleça a comunidade: adicione quadras, organize partidas e eleve o basquete! </Description>
-                <Button title="Adicionar uma nova quadra +" />
+                <Button title="Adicionar Nova Quadr" type="FILLED" size="LARGE" />
             </Content>
         </Container>
     )

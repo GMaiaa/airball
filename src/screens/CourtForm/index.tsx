@@ -84,7 +84,7 @@ export function CourtForm() {
                             onChangeText={setCourtAddress}
                         />
                         <ButtonArea>
-                            <Button title="Continuar" type="FILLED" onPress={handleFormContinue} />
+                            <Button title="Large Button" size="LARGE" type="FILLED" />
                         </ButtonArea>
                     </Content>
                 )}
