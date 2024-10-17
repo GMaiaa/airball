@@ -17,25 +17,23 @@ export const Form = styled.View`
 
 `
 
-export const RegisterText = styled.Text`
-    margin-top: 10px;
-
-    ${({ theme }) => css`
-        color: ${theme.COLORS.GRAY_100};
-        font-size: ${theme.FONT_SIZE.MD}px;
-        font-family: ${theme.FONT_FAMILY.REGULAR};
-    `};
+export const TextRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 `
 
-export const TextRow = styled.View`
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+export const RegisterText = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_100};
+    font-size: ${theme.FONT_SIZE.MD}px;
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+  `};
 `
 
 export const ButtonText = styled(TouchableOpacity)`
- 
-   
+  margin-left: 5px;
 `
 
 export const TextLink = styled.Text`

@@ -19,7 +19,11 @@ export function SignIn() {
                 <Input placeholder="Digite sua senha" label="Senha" />
             </Form>
             <CommandsWrapper>
-                <Button title="Continuar" type="OUTLINED" size="LARGE" />
+                <Button
+                    title="Continuar"
+                    type="OUTLINED"
+                    size="LARGE" 
+                />
 
                 <TextRow>
                     <RegisterText>
