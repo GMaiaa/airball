@@ -5,7 +5,7 @@ import { useFonts, Poppins_400Regular, Poppins_600SemiBold ,Poppins_700Bold } fr
 import theme from './src/theme';
 import { Loading } from '@components/Loading';
 import TabBar from '@components/TabBar';
-import CourtDetails from '@screens/CourtDetails';
+import {SignIn} from '@screens/SignIn';
 
 
 
@@ -19,7 +19,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <CourtDetails/> : <Loading/> }
+        { fontsLoaded ? <SignIn/> : <Loading/> }
     </ThemeProvider>
   );
 }

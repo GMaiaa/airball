@@ -18,7 +18,7 @@ export function Intro() {
 
             <CommandCentral>
                 <Button title="Junte-se a nós"/>
-                <Button title="Entrar" type='TRANSPARENT'/>
+                <Button title="Entrar" type='OUTLINED'/>
             </CommandCentral>
         </Container>
     )

@@ -3,6 +3,7 @@ import { ButtonTypeStyleProps, Container, Title } from "./styles";
 
 type ButtonSizeStyleProps = 'LARGE' | 'MEDIUM' | 'SMALL';
 
+
 type Props = TouchableOpacityProps & {
   title: string;
   type?: ButtonTypeStyleProps;

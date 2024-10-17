@@ -26,6 +26,7 @@ export function Input({ placeholder, label, type = 'DEFAULT', ...rest }: Props) 
                 hasContent={!!value}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
+                keyboardAppearance="dark"
                 {...rest}
             />
         </Container>

@@ -1,21 +1,18 @@
-import { Text, Pressable } from 'react-native';
-import { styles } from './styles';
-import React from 'react';
+import { TouchableOpacityProps } from "react-native";
+import { ButtonTypeStyleProps, Container, Title } from "./styles"; // Importando os estilos
 
-type DimensionValue = number | 'auto' | `${number}%`;
-interface TransparentButtonProps {
+type ButtonSizeStyleProps = 'LARGE' | 'MEDIUM' | 'SMALL';
+
+type TransparentButtonProps = TouchableOpacityProps & {
   title: string;
-  width: DimensionValue;
-  height:DimensionValue;
-}
-
-const TransparentButton: React.FC<TransparentButtonProps> = ({ title, width,height }) => {
-  return (
-    <Pressable style={[styles.Content, { width, height }]}>
-        <Text style={styles.buttonText}>{title}</Text>
-    </Pressable>
-  );
+  type?: ButtonTypeStyleProps; // Tipo do botão
+  size?: ButtonSizeStyleProps; // Tamanho do botão
 };
 
-export default TransparentButton;
-
+export function TransparentButton({ title, type = 'OUTLINED', size = 'MEDIUM', ...rest }: TransparentButtonProps) {
+  return (
+    <Container type={type} size={size} style={{ backgroundColor: 'transparent' }} {...rest}>
+      <Title size={size} style={{ color: rest.disabled ? 'lightgray' : 'orange' }}>{title}</Title>
+    </Container>
+  );
+}

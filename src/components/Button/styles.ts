@@ -17,7 +17,11 @@ export const Container = styled(TouchableOpacity)<ContainerProps>`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.COLORS.ORANGE};
+  background-color: ${({ theme, type }) =>
+        type === 'FILLED' ? theme.COLORS.ORANGE : 'transparent'};
+
+   border: ${({ theme, type }) =>
+    type === 'OUTLINED' ? `1px solid ${theme.COLORS.GRAY_100}` : 'none'};
 
   ${({ size }) => size === 'LARGE' && css`
     height: 56px;
