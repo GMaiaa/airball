@@ -29,3 +29,24 @@ export const NotIcon = styled(Ionicons).attrs(({ theme }) => ({
   right: 10px;
   position: absolute;
 `;
+
+export const CourtWrapper = styled.View`
+    width: 100%;
+    margin-top: 35px;
+`;
+
+export const HeaderWrapper = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    width: 100%;
+`;
+
+export const TitleSection = styled.Text`
+    ${({ theme }) => css`
+        color: ${theme.COLORS.GRAY_100};
+        font-size: ${theme.FONT_SIZE.MD}px;
+        font-family: ${theme.FONT_FAMILY.BOLD};
+    `}
+`;
