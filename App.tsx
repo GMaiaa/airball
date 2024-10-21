@@ -19,7 +19,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <CourtForm/> : <Loading/> }
+        { fontsLoaded ? <TabBar/> : <Loading/> }
     </ThemeProvider>
   );
 }
