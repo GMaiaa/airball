@@ -7,7 +7,7 @@ import { ListEmpty } from '@components/ListEmpty';
 import CardComponent from '@components/MatchCard';
 
 
-export default function Home() {
+export function Home() {
   let courts = [
     { title: "Quadra da Tiquatira", distance: 0.8, photo: "https://www.jornaldevinhedo.com.br/wp-content/uploads/2019/09/16019_QuadraRep-1.jpg" },
     { title: "Quadra da Jacui", distance: 2.8, photo: "https://www.jornaldevinhedo.com.br/wp-content/uploads/2019/09/16019_QuadraRep-1.jpg" },
@@ -47,6 +47,7 @@ export default function Home() {
             ListEmptyComponent={() => (
               <ListEmpty message="Nenhuma Quadra foi cadastrada até o momento." />
             )}
+            showsHorizontalScrollIndicator={false}
           />
         </CourtWrapper>
 
@@ -69,6 +70,11 @@ export default function Home() {
             )}
             horizontal
             style={{ height: 180 }}
+            ListEmptyComponent={() => (
+              <ListEmpty message="Nenhuma Quadra foi cadastrada até o momento." />
+            )}
+            showsHorizontalScrollIndicator={false}
+
           />
         </CourtWrapper>
 

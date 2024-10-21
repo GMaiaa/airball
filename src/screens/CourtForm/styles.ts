@@ -4,15 +4,16 @@ export const Container = styled.View`
     flex: 1;
     width: 100%;
     background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+    padding-top: 40px;
 `
 
 export const Content = styled.View`
-    padding: 0 48px;
+    padding: 0 30px;
     height: 100vh;
 `
 
 export const Title = styled.Text`
-    margin-top: 128px;
+    margin-top: 30px;
     margin-bottom: 8px;
 
     ${({ theme }) => css`

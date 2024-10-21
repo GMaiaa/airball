@@ -21,7 +21,7 @@ export const Subtitle = styled.Text`
     margin-bottom: 20px;
     ${({theme}) => css`
         color: ${theme.COLORS.GRAY_100};
-        font-size: ${theme.FONT_SIZE.LG}px;
+        font-size: ${theme.FONT_SIZE.MD}px;
         font-family: ${theme.FONT_FAMILY.SEMIBOLD};
     `};
 `

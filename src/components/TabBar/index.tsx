@@ -2,10 +2,10 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '@screens/Home'; 
+import {Home} from '@screens/Home'; 
 import Matchs from '@screens/Matchs';
 import News from '@screens/News';
-import CreateCourt from '@screens/CreateCourt';
+import {CreateCourt} from '@screens/CreateCourt';
 import Menu from '@screens/Menu'; 
 import ButtonNew from '@components/ButtonNew'
 import { Feather, FontAwesome, Entypo, FontAwesome6, Ionicons } from '@expo/vector-icons';
