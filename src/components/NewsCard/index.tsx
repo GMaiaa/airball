@@ -7,19 +7,21 @@ type Props = {
     photo: string 
 }
 
-export function CourtCard({ title, source, time, photo }: Props) {
+export function NewsCard({ title, source, time, photo }: Props) {
     return (
         <Container>
-            <Photo source={{ uri: photo }} /> 
+            <Photo source={{ uri: photo }} />  
             <Infos>
-                <Title> {title} </Title>
+                {/* Certifique-se de que o título está dentro de <Text> */}
+                <Title numberOfLines={2}> {title} </Title>  
                 <SourceNews>
                     <LocIcon name="location" />
-                    <SourceText> {source}</SourceText> 
+                    {/* Envolva a fonte da notícia em um <Text> */}
+                    <SourceText> {source} </SourceText>
                 </SourceNews>
                 <TimeNews>
-                    <TimeText> {time} hours</TimeText> 
-                    <LocIcon name="location" />
+                    {/* Envolva o tempo em um <Text> */}
+                    <TimeText> {time} atrás </TimeText>
                 </TimeNews>
             </Infos>
         </Container>

@@ -4,10 +4,8 @@ import { useFonts, Poppins_400Regular, Poppins_600SemiBold ,Poppins_700Bold } fr
 
 import theme from './src/theme';
 import { Loading } from '@components/Loading';
-import TabBar from '@components/TabBar';
-import CourtDetails from '@screens/CourtDetails';
-
-
+import TabBar from '@components/TabBar'; // Supondo que a TabBar será usada em outra parte do app.
+import News from '@screens/News'; // Certifique-se de que o caminho esteja correto.
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Poppins_400Regular, Poppins_600SemiBold ,Poppins_700Bold });
@@ -19,7 +17,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <CourtDetails/> : <Loading/> }
+        { fontsLoaded ? <TabBar/> : <Loading/> }
     </ThemeProvider>
   );
 }
