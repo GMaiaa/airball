@@ -3,19 +3,19 @@ import { Container, Infos, InfoBy, InfoByText, NewsIcon, Photo, Title, TimeRelea
 type Props = {
     title: string,
     infoBy: string,
-    photo: string 
+    photo: string
     created_at: string
 }
 
 export function NewsCard({ title, infoBy, photo, created_at }: Props) {
     return (
         <Container>
-            <Photo source={{ uri: photo }} /> 
+            <Photo source={{ uri: photo }} />
             <Title> {title} </Title>
             <Infos>
                 <InfoBy>
-                    <InfoByText> {infoBy} </InfoByText> 
                     <NewsIcon name="newspaper" />
+                    <InfoByText> {infoBy} </InfoByText>
                 </InfoBy>
 
                 <TimeReleased> {created_at} </TimeReleased>

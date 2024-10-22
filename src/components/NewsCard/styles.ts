@@ -31,6 +31,7 @@ export const Title = styled.Text`
         font-size: ${theme.FONT_SIZE.MD}px;
         font-family: ${theme.FONT_FAMILY.BOLD};
     `};
+    margin-top: 10px;
 `
 
 export const InfoBy = styled.View`

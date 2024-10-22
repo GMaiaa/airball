@@ -34,7 +34,8 @@ export const NotIcon = styled(Ionicons).attrs(({ theme }) => ({
 
 export const LatestNews = styled.View`
 margin-top: 35px;
-margin-left: 15px
+margin-left: 15px;
+flex: 1
 `
 
 export const TitleLatest = styled.Text`
