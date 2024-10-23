@@ -23,7 +23,7 @@ export const Card = styled.View<CardProps>`
   margin: 10px;
   padding: ${({ size }) => (size === 'small' ? '15px' : '20px')};
   height: ${({ size }) => (size === 'small' ? '140px' : '240px')};
-  width: ${({ width, size }) => (width ? `${width}px` : size === 'small' ? '220px' : '341px')};
+  width: ${({ width, size }) => (width ? `${width}px` : size === 'small' ? '220px' : '375px')};
 `;
 
 

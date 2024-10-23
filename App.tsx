@@ -6,6 +6,8 @@ import theme from './src/theme';
 import { Loading } from '@components/Loading';
 import TabBar from '@components/TabBar';
 import {CourtForm} from '@screens/CourtForm';
+import CourtGames from '@screens/CourtGames';
+import NewGame from '@screens/NewGame';
 
 
 
@@ -19,7 +21,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <TabBar/> : <Loading/> }
+        { fontsLoaded ? <NewGame/> : <Loading/> }
     </ThemeProvider>
   );
 }

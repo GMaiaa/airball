@@ -3,7 +3,7 @@ import theme from '../../theme'; // Ajuste o caminho conforme necessário
 
 export const styles = StyleSheet.create({
   buttonText: {
-    color: theme.COLORS.ORANGE, // Defina a cor do texto para um padrão visível
+    color: theme.COLORS.GRAY_100, // Defina a cor do texto para um padrão visível
     fontSize: theme.FONT_SIZE.LG,
     fontFamily: theme.FONT_FAMILY.SEMIBOLD,
   },
