@@ -10,7 +10,7 @@ type Props = TouchableOpacityProps & {
 export function BackButton({ title, ...rest }: Props) {
   return (
     <Container {...rest}>
-      <Feather name="chevron-left" size={20} color="gray" />
+      <Feather name="chevron-left" size={30} color="gray" />
       <Title>{title}</Title>
     </Container>
   );

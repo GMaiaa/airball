@@ -55,7 +55,7 @@ export default function Menu() {
         </View>
       </UserInfoContainer>
 
-      <MenuOption title="Meu perfil" subtitle="Informações da minha conta" onPress={() => navigation.navigate('MyProfile')}/>
+      <MenuOption title="Meu perfil" subtitle="Informações da minha conta"/>
       <MenuOption title="Contato" subtitle="Entre em contato conosco" />
       <MenuOption title="Sobre a Airball" subtitle="Saiba mais sobre nós" />
       <MenuOption title="Termos e condições" subtitle="Políticas de uso" />

@@ -4,7 +4,7 @@ import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } fr
 
 import theme from './src/theme';
 import { Loading } from '@components/Loading';
-import TabBar from '@components/TabBar';
+import MyProfile from './src/screens/MyProfile';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold });
@@ -16,7 +16,11 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <TabBar /> : <Loading />}
+      {fontsLoaded ? (
+        <MyProfile /> // Renderize apenas MyProfile
+      ) : (
+        <Loading />
+      )}
     </ThemeProvider>
   );
 }
