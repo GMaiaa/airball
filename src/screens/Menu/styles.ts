@@ -9,6 +9,7 @@ interface SizeProps {
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+  
 `;
 
 export const IconButton = styled(TouchableOpacity)`
@@ -24,15 +25,15 @@ export const Icon = styled(Entypo).attrs(({ theme }) => ({
 }))``;
 
 export const ProfilePic = styled.Image<SizeProps>`
-  width: ${({ size }) => (size === "small" ? "60px" : "70px")};
-  height: ${({ size }) => (size === "small" ? "60px" : "70px")};
-  border-radius: ${({ size }) => (size === "small" ? "30px" : "35px")};
+  width: ${({ size }) => (size === "small" ? "80px" : "90px")}; 
+  height: ${({ size }) => (size === "small" ? "80px" : "90px")};
+  border-radius: ${({ size }) => (size === "small" ? "40px" : "45px")};
 `;
 
 export const UserInfoContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
 `;
 
 export const UserName = styled.Text`
@@ -48,12 +49,17 @@ export const UserPositionContainer = styled.View`
 
 export const UserPosition = styled.Text`
   color: ${({ theme }) => theme.COLORS.GRAY_100};
-  font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
-  margin-right: 5px; /* Espaço entre o texto e o ícone */
 `;
 
 
 export const  UserNamePosition = styled.View`
   
+`;
+
+export const EditPositionArea = styled.TouchableOpacity`
+  margin-top:10px;
+  flex-direction: row;
+  gap:10px;
 `;
