@@ -5,7 +5,7 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
 `;
 export const Content = styled.View`
-flex-direction:row;
+ align-items: center;  /* Centraliza os itens horizontalmente */
 `;
 
 export const CourtHeader = styled.View`
@@ -60,7 +60,13 @@ export const ButtonContainer = styled.View`
   left: 35%;
 `;
 
-
+export const IconContainer = styled.View`
+  position: absolute;
+  bottom: 170px;  /* Ajusta o valor conforme necessário para posicionar o botão */
+  flex-direction:row;
+  left: 85%;
+  gap:8px;
+`;
 
 
 export const Line = styled.View`
