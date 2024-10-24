@@ -7,7 +7,8 @@ import { Loading } from '@components/Loading';
 import TabBar from '@components/TabBar';
 import {CourtForm} from '@screens/CourtForm';
 import CourtGames from '@screens/CourtGames';
-import NewGame from '@screens/NewGame';
+import {SignIn} from '@screens/SignIn';
+import { Routes } from '@routes/index';
 
 
 
@@ -21,7 +22,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <NewGame/> : <Loading/> }
+        { fontsLoaded ? <Routes/> : <Loading/> }
     </ThemeProvider>
   );
 }

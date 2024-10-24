@@ -4,8 +4,16 @@ import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { Logo } from "@components/Logo";
 import { Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 export function SignUp() {
+    const navigation = useNavigation<AuthNavigatorRoutesProps>()
+
+    function handleLogin(){
+        navigation.navigate("signIn")
+    }
+    
     return (
         <Container>
             <Logo />
@@ -31,7 +39,7 @@ export function SignUp() {
                     <RegisterText>
                         Já tem uma conta?
                     </RegisterText>
-                    <ButtonText onPress={() => { }}>
+                    <ButtonText onPress={handleLogin}>
                         <TextLink>
                             Entrar
                         </TextLink>
