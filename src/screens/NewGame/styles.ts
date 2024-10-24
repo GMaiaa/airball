@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components/native";
+import { Picker } from '@react-native-picker/picker';
+
 
 export const Container = styled.View`
   flex: 1;
@@ -77,19 +79,29 @@ export const FormRow = styled.View`
 `;
 
 export const Label = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
-  font-family: ${({ theme }) => theme.FONT_FAMILY.SEMIBOLD}px;
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.SEMIBOLD};
   color: ${({ theme }) => theme.COLORS.GRAY_100};
   margin-right: 10px; /* Espaçamento à direita do label para separar do Picker */
 `;
 
 export const InputContainer = styled.View`
-  flex-direction: row;  /* Mantém o alinhamento horizontal */
-  align-items: center;  /* Alinha os itens verticalmente ao centro */
-  width: 100%;          /* Ocupa toda a largura disponível */
+  flex-direction: row; 
+  align-items: center; 
+  width: 100%; 
   justify-content: space-between;
 `;
 
+export const InputText = styled.TextInput`
+  background-color: transparent; /* Fundo transparente */
+  padding: 10px;
+  border-radius: 8px;
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.XS}px; /* Fonte XS (12px) */
+    color: ${theme.COLORS.GRAY_100}; /* Cor do texto */
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+  `}
+`;
 
 export const InputLine = styled.View`
   border-bottom-width: 1px;
@@ -97,3 +109,4 @@ export const InputLine = styled.View`
   border-color: white;
   width: 100%;
 `;
+
