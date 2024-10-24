@@ -32,3 +32,14 @@ export const CameraIcon = styled(Feather)`
   width:30px;
   height:30px;
 `;
+
+export const Inputs = styled.View`
+  margin-left:5px;
+  margin-right:5px;
+  
+`
+
+
+export const ButtonsArea = styled.View`
+ gap:20px;
+`
