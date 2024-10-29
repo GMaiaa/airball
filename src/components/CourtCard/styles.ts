@@ -12,9 +12,7 @@ export const Container = styled.View`
 export const Photo = styled.Image`
     width: 100%;
     height: 125px;
-
     border-radius: 8px;
-    
 `
 
 export const Infos = styled.View`

@@ -10,7 +10,7 @@ import { Button } from '@components/Button';
 export default function Matchs() {
   return (
     <Container>
-      <Header />
+      <Header showHomeVersion />
       <HeaderMatchs>
         <TitleHeader>Suas Partidas</TitleHeader>
         <FilterButton>

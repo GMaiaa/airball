@@ -18,7 +18,7 @@ export const Content = styled.View`
 `
 
 export const ImageCourt = styled.Image`
-  margin-top: 100px;
+  margin-top: 50px;
 `
 
 export const Title = styled.Text`
