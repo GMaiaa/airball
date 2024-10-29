@@ -1,18 +1,24 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Container, Content, CourtWrapper, HeaderWrapper, Icon, IconButton, Title, TitleSection } from './styles';
 import { Header } from '@components/Header';
 import { CourtCard } from '@components/CourtCard';
 import { ListEmpty } from '@components/ListEmpty';
 import CardComponent from '@components/MatchCard';
 
+type AppRoutes = {
+    TabBar: undefined;
+    CourtGames: undefined;
+};
 
 export function Home() {
-  let courts = [
-    { title: "Quadra da Tiquatira", distance: 0.8, photo: "https://www.jornaldevinhedo.com.br/wp-content/uploads/2019/09/16019_QuadraRep-1.jpg" },
-    { title: "Quadra da Jacui", distance: 2.8, photo: "https://www.jornaldevinhedo.com.br/wp-content/uploads/2019/09/16019_QuadraRep-1.jpg" },
-    { title: "Quadra da Jacui", distance: 2.8, photo: "https://www.jornaldevinhedo.com.br/wp-content/uploads/2019/09/16019_QuadraRep-1.jpg" }
-    
+  const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>(); // Tipagem do useNavigation
+
+  const courts = [
+    { title: "Quadra da Tiquatira", distance: 0.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
+    { title: "Quadra da Jacui", distance: 2.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
   ];
 
   let popularGames = [
@@ -25,7 +31,6 @@ export function Home() {
       <Header showHomeVersion />
       <Content>
         <Title> Bem-vindo ao AirBall! Pronto para dominar a quadra? </Title>
-
         <CourtWrapper>
           <HeaderWrapper>
             <TitleSection> Quadras </TitleSection>
@@ -39,18 +44,22 @@ export function Home() {
             data={courts}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-              <CourtCard title={item.title} distance={item.distance} photo={item.photo} />
+              <CourtCard 
+                title={item.title} 
+                distance={item.distance} 
+                photo={item.photo} 
+                onPress={() => navigation.navigate('CourtGames')}
+              />
             )}
             horizontal
             style={{height: 200 }}
-            contentContainerStyle={{ paddingHorizontal: 10 }} // Adicionando padding horizontal
+            contentContainerStyle={{ paddingHorizontal: 10 }}
             ListEmptyComponent={() => (
               <ListEmpty message="Nenhuma Quadra foi cadastrada até o momento." />
             )}
             showsHorizontalScrollIndicator={false}
           />
         </CourtWrapper>
-
         <CourtWrapper>
           <HeaderWrapper>
             <TitleSection> Jogos Populares </TitleSection>
@@ -77,7 +86,6 @@ export function Home() {
 
           />
         </CourtWrapper>
-
       </Content>
     </Container>
   );
