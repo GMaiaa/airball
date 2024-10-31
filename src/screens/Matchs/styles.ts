@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components/native";
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export const HeaderMatchs = styled.View`
   flex-direction: row;
@@ -18,19 +20,17 @@ export const TitleHeader = styled.Text`
   `}
 `;
 
-export const Container = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+export const Container = styled.SafeAreaView`
+    flex: 1;
+    background-color: ${({ theme }) => theme.COLORS.GRAY_700};
 `;
 
 
 export const Line = styled.View`
 height: 1px;
 background-color:white;
-margin-top:10px;
 width:90%;
 align-self:center;
-margin-bottom:38px;
 `;
 
 export const FilterButton = styled.View`
