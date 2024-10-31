@@ -12,8 +12,20 @@ import {
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { UpdateModal } from '../../components/UpdateModal'; // Ajuste o caminho conforme necessário
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from '@routes/auth.routes';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppRoutes } from '@routes/app.routes';
 
 export default function MyProfile() {
+
+  const navigation = useNavigation<StackNavigationProp<AppRoutes>>(); // Corrigido aqui
+
+  function handleBackButtonPress() {
+    navigation.navigate("Menu");
+  }
+
+
   const [modalVisible, setModalVisible] = useState(false);
 
   // Lista de posições de jogadores de basquete
@@ -31,10 +43,12 @@ export default function MyProfile() {
     "Center"
   ];
 
+  
+
   return (
     <Container>
       <ScrollView contentContainerStyle={{ padding: 16 }}>
-        <BackButton title="Opções de perfil" />
+        <BackButton title="Opções de perfil" onPress={handleBackButtonPress} />
 
         <UserPictureArea>
           <ProfilePic size="large" source={require("@assets/avatar.png")} />
@@ -57,7 +71,7 @@ export default function MyProfile() {
         </Inputs>
 
         <ButtonsArea>
-          <Button title={"Alterar senha"} type="TRANSPARENT" onPress={() => setModalVisible(true)} />
+          <Button title={"Alterar senha"} type="OUTLINED" onPress={() => setModalVisible(true)} />
           <Button title={"Atualizar dados"} />
         </ButtonsArea>
 

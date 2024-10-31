@@ -5,11 +5,13 @@ import { Feather } from "@expo/vector-icons"; // Importando ícone da Feather
 
 type Props = TouchableOpacityProps & {
   title: string;
+  onPress?: () => void;
+
 };
 
-export function BackButton({ title, ...rest }: Props) {
+export function BackButton({ title, onPress ,...rest }: Props) {
   return (
-    <Container {...rest}>
+    <Container {...rest} onPress={onPress}>
       <Feather name="chevron-left" size={30} color="gray" />
       <Title>{title}</Title>
     </Container>

@@ -10,7 +10,7 @@ export function Routes() {
 
     return (
             <NavigationContainer>
-                <AuthRoutes />
+                <AppRoutes />
             </NavigationContainer>
     )
 }

@@ -7,11 +7,12 @@ import { View } from 'react-native';
 interface MenuOptionProps {
   title: string;
   subtitle: string;
+  onPress?: () => void;
 }
 
-export const MenuOption: React.FC<MenuOptionProps> = ({ title, subtitle }) => {
+export const MenuOption: React.FC<MenuOptionProps> = ({ title, subtitle, onPress  }) => {
   return (
-    <OptionContainer>
+    <OptionContainer onPress={onPress}>
       <View>
         <OptionTitle>{title}</OptionTitle>
         <OptionSubtitle>{subtitle}</OptionSubtitle>
