@@ -5,6 +5,11 @@ import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } fr
 import theme from './src/theme';
 import { Loading } from '@components/Loading';
 import MyProfile from './src/screens/MyProfile';
+import TabBar from '@components/TabBar';
+import {CourtForm} from '@screens/CourtForm';
+import CourtGames from '@screens/CourtGames';
+import {SignIn} from '@screens/SignIn';
+import { Routes } from '@routes/index';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold });
@@ -21,6 +26,12 @@ export default function App() {
       ) : (
         <Loading />
       )}
+        <StatusBar 
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
+        { fontsLoaded ? <Routes/> : <Loading/> }
     </ThemeProvider>
   );
 }

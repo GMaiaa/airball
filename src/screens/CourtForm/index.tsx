@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from "@components/Input";
-import { ButtonArea, Container, Content, Description, FileInput, FullProgressBar, Placeholder, ProgressBar, ProgressContainer, RemainingProgress, Title } from "./styles";
+import { BackIcon, ButtonArea, Container, Content, Description, FileInput, FormHeader, FullProgressBar, Placeholder, ProgressBar, ProgressBarContainer, ProgressContainer, RemainingProgress, Title } from "./styles";
 import { Button } from "@components/Button";
 import { View, Text, Image } from "react-native";
 import { Label } from '@components/Label';
@@ -54,9 +54,17 @@ export function CourtForm() {
     return (
         <Container>
             <ProgressContainer>
-                <RemainingProgress />
-                {formPage === 1 && <ProgressBar />}
-                {formPage === 2 && <FullProgressBar />}
+
+                <BackIcon
+                    name="arrow-back"
+                    onPress={() => setFormPage(prevPage => prevPage - 1)}
+                />
+
+                <ProgressBarContainer>
+                    <RemainingProgress />
+                    {formPage === 1 && <ProgressBar />}
+                    {formPage === 2 && <FullProgressBar />}
+                </ProgressBarContainer>
             </ProgressContainer>
             <View>
                 {formPage === 1 && (
@@ -84,7 +92,7 @@ export function CourtForm() {
                             onChangeText={setCourtAddress}
                         />
                         <ButtonArea>
-                            <Button title="Continuar" type="FILLED" onPress={handleFormContinue} />
+                            <Button title="Continuar" size="LARGE" type="FILLED" onPress={handleFormContinue} />
                         </ButtonArea>
                     </Content>
                 )}

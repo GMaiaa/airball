@@ -1,18 +1,41 @@
 import styled, { css } from "styled-components/native";
+import { Ionicons } from '@expo/vector-icons';
 
 export const Container = styled.View`
     flex: 1;
     width: 100%;
     background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+    padding-top: 40px;
 `
 
 export const Content = styled.View`
-    padding: 0 48px;
+    padding: 0 30px;
     height: 100vh;
 `
 
+export const FormHeader = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+`;
+
+export const BackIcon = styled(Ionicons).attrs(({ theme }) => ({
+    size: 24,
+    color: theme.COLORS.GRAY_100,
+}))`
+    margin-bottom: 10px;
+`;
+
+export const ProgressBarContainer = styled.View`
+    position: relative;
+    height: 2px;
+    width: 100%;
+`;
+
+  
+
 export const Title = styled.Text`
-    margin-top: 128px;
+    margin-top: 30px;
     margin-bottom: 8px;
 
     ${({ theme }) => css`
@@ -36,7 +59,6 @@ export const ButtonArea = styled.View`
     top: 590px;
     width:80%;
     align-self: center;
-    margin-top: 100px;
 `
 
 export const FileInput = styled.Pressable`
@@ -62,9 +84,8 @@ export const FileInput = styled.Pressable`
 `
 
 export const ProgressContainer = styled.View`
-    position: relative;
     margin-top: 30px;
-    height: 2px;
+    padding: 0 20px;
 `;
 
 export const ProgressBar = styled.View`

@@ -1,29 +1,58 @@
-import { TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
+import { TouchableOpacity } from "react-native";
 
-export type ButtonTypeStyleProps = 'FILLED' | 'TRANSPARENT';
+export type ButtonTypeStyleProps = 'FILLED' | 'OUTLINED';
+export type ButtonSizeStyleProps = 'LARGE' | 'MEDIUM' | 'SMALL';
 
-type Props = {
-    type: ButtonTypeStyleProps;
+interface ContainerProps {
+  type: ButtonTypeStyleProps;
+  size: ButtonSizeStyleProps;
 }
 
-export const Container = styled(TouchableOpacity).attrs<Props>(({ theme, type }) => ({
-    activeOpacity: 0.7,
-})) <Props>`
-    background-color: ${({ theme, type }) =>
+interface TitleProps {
+  size: ButtonSizeStyleProps;
+}
+
+export const Container = styled(TouchableOpacity)<ContainerProps>`
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: ${({ theme, type }) =>
         type === 'FILLED' ? theme.COLORS.ORANGE : 'transparent'};
-    padding: 20px 60px;
-    border-radius: 25px;
-    border: ${({ theme, type }) =>
-        type === 'TRANSPARENT' ? `1px solid ${theme.COLORS.GRAY_100}` : 'none'};
-    align-items: center;
-    justify-content: center;
+
+   border: ${({ theme, type }) =>
+    type === 'OUTLINED' ? `1px solid ${theme.COLORS.GRAY_100}` : 'none'};
+
+  ${({ size }) => size === 'LARGE' && css`
+    height: 56px;
+    padding: 0 24px;
+  `}
+
+  ${({ size }) => size === 'MEDIUM' && css`
+    height: 48px;
+    padding: 0 20px;
+  `}
+
+  ${({ size }) => size === 'SMALL' && css`
+    height: 40px;
+    padding: 0 16px;
+  `}
+
 `;
 
-export const Title = styled.Text`
-    ${({ theme }) => css`
-        color: ${theme.COLORS.GRAY_100};
-        font-size: ${theme.FONT_SIZE.LG}px;
-        font-family: ${theme.FONT_FAMILY.BOLD};
-    `}
+export const Title = styled.Text<TitleProps>`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  color: ${({ theme }) => theme.COLORS.GRAY_100};
+
+  ${({ size }) => size === 'LARGE' && css`
+    font-size: 18px;
+  `}
+
+  ${({ size }) => size === 'MEDIUM' && css`
+    font-size: 16px;
+  `}
+
+  ${({ size }) => size === 'SMALL' && css`
+    font-size: 14px;
+  `}
 `;

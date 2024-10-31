@@ -1,5 +1,5 @@
 import { Highlight } from "@components/Highlight";
-import { ButtonText, CommandsWrapper, Container, ForgotPassword, ForgotText, Form, RegisterText, TextLink, TextRow } from "./styles";
+import { ButtonText, CommandsWrapper, Container, Form, RegisterText, TextLink, TextRow } from "./styles";
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { Logo } from "@components/Logo";
@@ -7,44 +7,41 @@ import { Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-export function SignIn() {
+export function SignUp() {
     const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
-    function handleNewAccount(){
-        navigation.navigate("signUp")
+    function handleLogin(){
+        navigation.navigate("signIn")
     }
-
+    
     return (
         <Container>
             <Logo />
             <Highlight
-                title="Bem vindo de volta,"
-                subtitle="Entre para continuar"
+                title="Bem vindo,"
+                subtitle="Registre-se para continuar"
             />
 
             <Form>
+                <Input placeholder="Digite seu nome completo" label="Nome" />
                 <Input placeholder="Digite seu email" label="Email" />
                 <Input placeholder="Digite sua senha" label="Senha" />
-                <ForgotPassword onPress={() => { }}>
-                    <ForgotText>
-                        Esqueceu a senha?
-                    </ForgotText>
-                </ForgotPassword>
+                <Input placeholder="Confirme sua Senha" label="Confirme a senha" />
             </Form>
             <CommandsWrapper>
                 <Button
-                    title="Continuar"
-                    type="OUTLINED"
+                    title="Crie sua Conta"
+                    type="FILLED"
                     size="LARGE"
                 />
 
                 <TextRow>
                     <RegisterText>
-                        Não tem uma conta?
+                        Já tem uma conta?
                     </RegisterText>
-                    <ButtonText onPress={handleNewAccount}>
+                    <ButtonText onPress={handleLogin}>
                         <TextLink>
-                            Registrar
+                            Entrar
                         </TextLink>
                     </ButtonText>
                 </TextRow>

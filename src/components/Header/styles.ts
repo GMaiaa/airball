@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 export const Container = styled.View`
   width: 100%;
-  padding: 20px 20px;
+  padding: 35px 20px;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start; 

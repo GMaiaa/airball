@@ -49,6 +49,19 @@ export function Input({ placeholder, label, type = 'DEFAULT', isTextarea = false
                     {...rest}
                 />
             )}
+            <Label> {label} </Label>
+            <InputField
+                value={value}
+                onChangeText={setValue}
+                placeholder={placeholder}
+                placeholderTextColor={theme.COLORS.GRAY_300}
+                isFocused={isFocused}
+                hasContent={!!value}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                keyboardAppearance="dark"
+                {...rest}
+            />
         </Container>
     );
 }

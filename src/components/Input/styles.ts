@@ -11,7 +11,7 @@ type InputFieldProps = {
 };
 
 export const Container = styled.View`
-  margin: 10px 0;
+  margin: 0px 0;
   border-radius: 5px;
 `;
 

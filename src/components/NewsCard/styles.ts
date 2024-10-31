@@ -1,5 +1,6 @@
 import styled, {css} from "styled-components/native";
-import Entypo from "@expo/vector-icons/Entypo";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
 
 export const Container = styled.View`
     width: 220px;
@@ -12,7 +13,9 @@ export const Container = styled.View`
 export const Photo = styled.Image`
     width: 100%;
     height: 125px;
+
     border-radius: 8px;
+    
 `
 
 export const Infos = styled.View`
@@ -28,14 +31,15 @@ export const Title = styled.Text`
         font-size: ${theme.FONT_SIZE.MD}px;
         font-family: ${theme.FONT_FAMILY.BOLD};
     `};
+    margin-top: 10px;
 `
 
-export const LocationDistance = styled.View`
+export const InfoBy = styled.View`
     flex-direction: row;
     align-items: center;
 `
 
-export const LocationText = styled.Text`
+export const InfoByText = styled.Text`
   ${({ theme }) => css`
         color: ${theme.COLORS.GRAY_100};
         font-size: ${theme.FONT_SIZE.SM}px;
@@ -43,7 +47,16 @@ export const LocationText = styled.Text`
     `};
 `
 
-export const LocIcon = styled(Entypo).attrs(({ theme }) => ({
+export const NewsIcon = styled(MaterialIcons).attrs(({ theme }) => ({
     size: 14,
     color: theme.COLORS.GRAY_100,
   }))``;
+  
+
+  export const TimeReleased = styled.Text`
+     ${({ theme }) => css`
+        color: ${theme.COLORS.ORANGE};
+        font-size: ${theme.FONT_SIZE.SM}px;
+        font-family: ${theme.FONT_FAMILY.REGULAR};
+    `};
+  `

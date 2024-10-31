@@ -2,19 +2,19 @@ import React from 'react';
 import { ScrollView } from 'react-native'; // Importe ScrollView
 import { Header } from "@components/Header";
 import { HeaderMatchs, TitleHeader, Container, FilterButton, Line } from './styles';
-import TransparentButton from '@components/TransparentButton';
 import CardComponent from '@components/MatchCard';
+import { Button } from '@components/Button';
 
 
 
 export default function Matchs() {
   return (
     <Container>
-      <Header />
+      <Header showHomeVersion />
       <HeaderMatchs>
         <TitleHeader>Suas Partidas</TitleHeader>
         <FilterButton>
-          <TransparentButton title='Filtrar' width={131} height={45} />
+          <Button type='OUTLINED' title='Filtrar' size='SMALL'/>
         </FilterButton>
       </HeaderMatchs>
       <Line />
