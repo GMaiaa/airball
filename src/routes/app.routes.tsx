@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import TabBar from '@components/TabBar'; // Importar TabBar
+import TabBar from '@components/TabBar';
 import CourtGames from "@screens/CourtGames";
 
 type AppRoutes = {
-    TabBar: undefined;  // Defina o TabBar como uma rota principal
+    TabBar: undefined;
     CourtGames: undefined;
 };
 

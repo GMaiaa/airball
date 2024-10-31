@@ -1,11 +1,14 @@
 import styled, { css } from "styled-components/native";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const Container = styled.View`
+
+export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
 `;
 export const Content = styled.View`
- align-items: center;  /* Centraliza os itens horizontalmente */
+ align-items: center;
+ flex:1;
 `;
 
 export const CourtHeader = styled.View`
@@ -13,12 +16,11 @@ export const CourtHeader = styled.View`
   align-items: center;
   text-align: center;
   width: 100%;
-  bottom: 50px;
   position: relative;
+  margin-bottom: 0;
 `;
 
 export const ImageCourt = styled.Image`
-  margin-top: 15px;
   width: 100%;
 `;
 
@@ -36,15 +38,15 @@ export const Title = styled.Text`
 
 export const LocationContainer = styled.View`
   position:absolute;
-  flex-direction: row;  /* Coloca o ícone e o texto na mesma linha */
-  justify-content: flex-start;  /* Garante que o conteúdo fique alinhado à esquerda */
+  flex-direction: row;  
+  justify-content: flex-start; 
   margin-top: 10px;
-  width: 90%;  /* Define uma largura para o contêiner */
+  width: 90%; 
 `;
 
 export const Description = styled.Text`
   text-align: left;
-  margin-left: 8px; /* Espaço entre o ícone e o texto */
+  margin-left: 8px;
   
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
@@ -56,13 +58,13 @@ export const Description = styled.Text`
 
 export const ButtonContainer = styled.View`
   position: absolute;
-  bottom: 20px;  /* Ajusta o valor conforme necessário para posicionar o botão */
+  bottom: 20px;
   left: 35%;
 `;
 
 export const IconContainer = styled.View`
   position: absolute;
-  bottom: 170px;  /* Ajusta o valor conforme necessário para posicionar o botão */
+  bottom: 170px;
   flex-direction:row;
   left: 85%;
   gap:8px;
@@ -72,8 +74,15 @@ export const IconContainer = styled.View`
 export const Line = styled.View`
   height: 1px;
   background-color: ${({ theme }) => theme.COLORS.ORANGE};
-  margin-top: 10px;
   width: 100%;
   align-self: center;
-  margin-bottom: 38px;
+  margin-top: 0;
 `;
+
+export const TabContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-around;
+  padding:10px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_700}
+`;
+

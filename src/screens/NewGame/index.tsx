@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
-import { TextInput, View, Platform, TouchableOpacity } from 'react-native';
+import { View,TouchableOpacity, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Button } from "@components/Button";
-import { Container, CourtHeader, ImageCourt, Title, Line, Description, LocationContainer, ButtonContainer, Content, IconContainer, FormRow, Label, InputContainer, InputLine, InputText } from "./styles";
-import CourtIllustration from "@assets/Court.png";
-import { Header } from "@components/Header";
-
-
+import { Container, Content, FormRow, Label, InputContainer, InputLine, InputText } from "./styles";
 import AntDesign from '@expo/vector-icons/AntDesign';
-import Entypo from '@expo/vector-icons/Entypo';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function NewGame() {
@@ -34,27 +29,9 @@ export default function NewGame() {
     };
 
     return (
+        <ScrollView>
         <Container>
-            <Header />
-            <Line />
-            <CourtHeader>
-                <ImageCourt source={CourtIllustration} />
-                <Title>Quadra Parque Ibirapuera</Title>
-                <IconContainer>
-                    <AntDesign name="sharealt" size={24} color="white" />
-                    <AntDesign name="hearto" size={24} color="white" />
-                </IconContainer>
-                <LocationContainer>
-                    <Entypo name="location" size={20} color="white" />
-                    <Description>Avenida Tiquatira, 1665 - Arthur Alvim, São Paulo - SP</Description>
-                </LocationContainer>
-                <ButtonContainer>
-                    <Button title="Ver no mapa" size="SMALL" />
-                </ButtonContainer>
-            </CourtHeader>
-
             <Content>
-
             <FormRow>
             <InputLine />
                 <InputContainer> 
@@ -170,10 +147,9 @@ export default function NewGame() {
                 </InputContainer>
                 <InputLine />
             </FormRow>
-
-
                 <Button title="Criar Jogo" size="LARGE" onPress={() => console.log('Jogo criado')} />
             </Content>
         </Container>
+        </ScrollView>
     );
 }
