@@ -55,10 +55,8 @@ export const Description = styled.Text`
 `
 
 export const ButtonArea = styled.View`
-    position: absolute;
-    top: 590px;
-    width:80%;
     align-self: center;
+    padding:15px;
 `
 
 export const FileInput = styled.Pressable`

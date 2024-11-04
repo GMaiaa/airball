@@ -5,6 +5,7 @@ import MyProfile from "@screens/MyProfile";
 import Menu from "@screens/Menu";
 import Contact from "@screens/Contact";
 import { Home } from "@screens/Home";
+import { CourtForm } from "@screens/CourtForm";
 
 
 export type AppRoutes = {
@@ -14,6 +15,7 @@ export type AppRoutes = {
     Menu: undefined;
     Contact: undefined;
     Home: undefined;
+    CourtForm: undefined;
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<AppRoutes>();
@@ -27,7 +29,7 @@ export function AppRoutes() {
             <Screen name="Menu" component= {Menu} />
             <Screen name="Contact" component= {Contact} />
             <Screen name="Home" component= {Home} />
-
+            <Screen name="CourtForm" component={CourtForm} />
         </Navigator>
     );
 }

@@ -2,6 +2,12 @@ import styled, { css } from "styled-components/native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
+
+interface TabButtonProps {
+  isActive?: boolean;
+}
+
+
 export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
@@ -47,7 +53,6 @@ export const LocationContainer = styled.View`
 export const Description = styled.Text`
   text-align: left;
   margin-left: 8px;
-  
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
     font-family: ${theme.FONT_FAMILY.REGULAR};
@@ -59,7 +64,7 @@ export const Description = styled.Text`
 export const ButtonContainer = styled.View`
   position: absolute;
   bottom: 20px;
-  left: 35%;
+  left: 30%;
 `;
 
 export const IconContainer = styled.View`
@@ -81,8 +86,34 @@ export const Line = styled.View`
 
 export const TabContainer = styled.View`
   flex-direction: row;
-  justify-content: space-around;
-  padding:10px;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_700}
+  justify-content: space-between; /* Isso ajuda a distribuir os botões uniformemente */
+  align-self: center; /* Centraliza o contêiner no meio da tela */
+  width: 100%; /* Defina a largura para centralizar e limitar o espaço */
+  padding: 10px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+  border-radius: 20px; /* Opcional: arredondamento das bordas */
+  margin-top:10px;
 `;
+
+
+export const TabButton = styled.TouchableOpacity<TabButtonProps>`
+  padding: 8px 20px;
+  border-radius: 20px;
+  ${({ isActive, theme }) =>
+    isActive
+      ? css`
+          background-color: ${theme.COLORS.GRAY_700};
+          border: 2px solid ${theme.COLORS.GRAY_100};
+        `
+      : css`
+          background-color: transparent;
+          border: none;
+        `}
+`;
+
+export const TabButtonText = styled.Text<TabButtonProps>`
+  color: ${({ isActive, theme }) => (isActive ? theme.COLORS.GRAY_100 : theme.COLORS.GRAY_100)};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+`;
+
 

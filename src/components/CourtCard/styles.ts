@@ -4,7 +4,6 @@ import Entypo from "@expo/vector-icons/Entypo";
 export const Container = styled.View`
     width: 220px;
     height: 140px;
-
     margin-top: 16px;
     margin-right: 30px;
 `
@@ -38,9 +37,10 @@ export const LocationDistance = styled.View`
 export const LocationText = styled.Text`
   ${({ theme }) => css`
         color: ${theme.COLORS.GRAY_100};
-        font-size: ${theme.FONT_SIZE.SM}px;
+        font-size: 10px;
         font-family: ${theme.FONT_FAMILY.BOLD};
     `};
+    margin-right:3px;
 `
 
 export const LocIcon = styled(Entypo).attrs(({ theme }) => ({

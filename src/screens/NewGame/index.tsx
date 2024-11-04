@@ -24,7 +24,7 @@ export default function NewGame() {
 
     const onChangeTime = (event: any, selectedTime?: Date) => {
         const currentTime = selectedTime || horario;
-        setShowTimePicker(false); // Fecha o seletor de horário
+        setShowTimePicker(false);
         setHorario(currentTime);
     };
 
@@ -36,7 +36,7 @@ export default function NewGame() {
             <InputLine />
                 <InputContainer> 
                     <Label>Frequência</Label>
-                    <AntDesign name="sync" size={24} color="white" style={{ marginLeft: 17 }}/>
+                    <AntDesign name="sync" size={24} color="white"/>
                     <View style={{ flex: 1 }}>
                         <Picker
                             selectedValue={frequencia}
@@ -54,18 +54,17 @@ export default function NewGame() {
                 <InputLine />
             </FormRow>
 
-            {/* Seletor de Data com ícone */}
             <FormRow>
                 <InputContainer>
                     <Label>Data</Label>
-                    <FontAwesome5 name="calendar-alt" size={24} color="white" style={{ marginLeft: 20 }} />
+                    <FontAwesome5 name="calendar-alt" size={24} color="white"/>
                     <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <InputText
                                 editable={false}
                                 placeholder="Escolha a Data do jogo"
                                 value={data.toLocaleDateString()}
-                                style={{ color: 'white' }}
+                                style={{ color: 'white', fontSize:16,}}
                             />
                         </View>
                     </TouchableOpacity>
@@ -81,18 +80,17 @@ export default function NewGame() {
                 <InputLine />
             </FormRow>
 
-            {/* Seletor de Horário com ícone */}
             <FormRow>
                 <InputContainer>
                     <Label>Horário</Label>
-                    <FontAwesome5 name="clock" size={24} color="white" style={{ marginLeft: 16 }} />
+                    <FontAwesome5 name="clock" size={24} color="white" />
                     <TouchableOpacity onPress={() => setShowTimePicker(true)}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <InputText
                                 editable={false}
                                 placeholder="Escolha o Horário do jogo"
                                 value={horario.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                style={{ color: 'white' }}
+                                style={{ color: 'white', fontSize:16 }}
                             />
                         </View>
                     </TouchableOpacity>
@@ -111,7 +109,7 @@ export default function NewGame() {
             <FormRow>
                 <InputContainer>
                     <Label>Quadra</Label>
-                    <FontAwesome5 name="basketball-ball" size={24} color="white" style={{ marginLeft: 49 }} />
+                    <FontAwesome5 name="basketball-ball" size={24} color="white"/>
                     <View style={{ flex: 1 }}>
                         <Picker
                             selectedValue={quadra}
@@ -130,7 +128,7 @@ export default function NewGame() {
             <FormRow>
                 <InputContainer>
                     <Label>Nível</Label>
-                    <FontAwesome5 name="trophy" size={24} color="white" style={{ marginLeft: 70 }}/>
+                    <FontAwesome5 name="trophy" size={24} color="white"/>
                     <View style={{ flex: 1 }}>
                         <Picker
                             selectedValue={nivel}
