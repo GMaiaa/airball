@@ -22,7 +22,7 @@ export const Title = styled.Text`
         font-size: ${theme.FONT_SIZE.XL}px;
         font-family: ${theme.FONT_FAMILY.BOLD};
     `}
-    width: 300px;
+    width: 400px;
     text-align: center; /* Remover as aspas de 'center' */
     margin-bottom: 20px; /* Corrigido a vírgula para ponto e vírgula */
 `;
