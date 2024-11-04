@@ -11,6 +11,7 @@ import CardComponent from '@components/MatchCard';
 type AppRoutes = {
     TabBar: undefined;
     CourtGames: undefined;
+    MatchDetails:undefined;
 };
 
 export function Home() {
