@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components/native";
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 interface TabButtonProps {
   isActive?: boolean;
@@ -12,9 +11,13 @@ export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
 `;
+
+
 export const Content = styled.View`
- align-items: center;
- flex:1;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  flex:1;
 `;
 
 export const CourtHeader = styled.View`
@@ -30,21 +33,22 @@ export const ImageCourt = styled.Image`
   width: 100%;
 `;
 
+
 export const Title = styled.Text`
   position: absolute;
   top: 20%;
   margin-left: -50%;
-  
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
     font-family: ${theme.FONT_FAMILY.BOLD};
     font-size: ${theme.FONT_SIZE.LG}px;
   `}
 `;
+
 export const MatchName = styled.Text`
   position: absolute;
   margin-left: 30%;
-  top:38%;
+  top: 38%;
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
     font-family: ${theme.FONT_FAMILY.SEMIBOLD};
@@ -52,13 +56,15 @@ export const MatchName = styled.Text`
   `}
 `;
 
+
 export const ProfileRow = styled.View`
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
-  position:absolute;
-  top:60%;
+  position: absolute;
+  top: 60%;
 `;
+
 export const ProfilePic = styled.Image`
   width: 54px;
   height: 54px;
@@ -75,6 +81,7 @@ export const UserIcon = styled.View`
   background-color: white;
   padding: 3px;
 `;
+
 
 export const GhostText = styled.Text`
   color: black;
@@ -102,12 +109,13 @@ export const ButtonContainer = styled.View`
   left: 30%;
 `;
 
+
 export const IconContainer = styled.View`
   position: absolute;
   bottom: 170px;
-  flex-direction:row;
+  flex-direction: row;
   left: 85%;
-  gap:8px;
+  gap: 8px;
 `;
 
 
@@ -121,16 +129,16 @@ export const Line = styled.View`
 
 export const TabContainer = styled.View`
   flex-direction: row;
-  justify-content: space-between; /* Isso ajuda a distribuir os botões uniformemente */
-  align-self: center; /* Centraliza o contêiner no meio da tela */
-  width: 90%; /* Defina a largura para centralizar e limitar o espaço */
+  justify-content: space-between;
+  align-self: center;
+  width: 90%;
   padding: 10px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
-  border-radius: 20px; /* Opcional: arredondamento das bordas */
-  margin-top:10px;
+  border-radius: 20px;
+  margin-top: 10px;
 `;
 
-
+// Botão de aba
 export const TabButton = styled.TouchableOpacity<TabButtonProps>`
   padding: 8px 20px;
   border-radius: 20px;
@@ -151,4 +159,53 @@ export const TabButtonText = styled.Text<TabButtonProps>`
   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 `;
 
+// Detalhes do jogo
+export const GameDetails = styled.View`
+  padding: 16px;
+  background-color: #1e1e1e;
+  border-top-width: 1px;
+  border-top-color: #333;
+`;
 
+export const DetailRow = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const DetailIcon = styled(FontAwesome5).attrs({
+  size: 24,
+  color: "white",
+})`
+  margin-right: 30%; 
+`;
+
+export const DetailText = styled.Text`
+  font-size: 16px;
+  color: #ffffff;
+`;
+
+export const FormRow = styled.View`
+  width: 100%;
+  margin-bottom:20px;
+`;
+
+export const Label = styled.Text`
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.SEMIBOLD};
+  color: ${({ theme }) => theme.COLORS.GRAY_100};
+`;
+
+export const InputContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 0;
+`;
+
+
+export const InputLine = styled.View`
+  border-bottom-width: 2px;
+  border-color: white;
+  width: 100%;
+`;
