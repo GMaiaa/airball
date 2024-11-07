@@ -1,39 +1,15 @@
 import { useState } from "react";
 import { ScrollView } from "react-native";
-import { 
-  Container,
-  CourtHeader,
-  ImageCourt,
-  Title,
-  Line,
-  Content,
-  IconContainer,
-  TabContainer,
-  TabButton,
-  TabButtonText,
-  MatchName,
-  ProfileRow,
-  ProfilePic,
-  UserIcon,
-  GhostText,
-  FormRow,
-  Label,
-  InputContainer,
-  InputLine,
-  GameDetails,
-  DetailRow,
-  DetailIcon,
-  DetailText 
-} from "./styles";
+import { Container,CourtHeader,ImageCourt,Title,Line,Content,IconContainer,TabContainer,TabButton,TabButtonText,MatchName,ProfileRow,ProfilePic,UserIcon,GhostText,FormRow,Label,InputContainer,InputLine,GameDetails,DetailRow,DetailIcon,DetailText,PlayButton,ButtonText } from "./styles";
 import { Header } from "@components/Header";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import CourtIllustration from "@assets/Court.png";
+import Teams from "@screens/Teams";
+import Feather from '@expo/vector-icons/Feather';
 
 export default function MatchDetails() {
   const [selectedTab, setSelectedTab] = useState("Jogo");
-
-  // Dados preenchidos
   const frequencia = "Semanal";
   const data = new Date().toLocaleDateString();
   const horario = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -87,6 +63,13 @@ export default function MatchDetails() {
                     <DetailText>{nivel}</DetailText>
                   </InputContainer>
                   <InputLine />
+
+                  <PlayButton>
+                    <ButtonText>Jogar</ButtonText>
+                    <Feather name="arrow-right" size={18} color="white" />
+                  </PlayButton>
+
+
                 </FormRow>
               </Content>
             </Container>
@@ -94,9 +77,7 @@ export default function MatchDetails() {
         );
       case "Times":
         return (
-          <ScrollView>
-          <Label>Olá</Label>
-          </ScrollView>
+          <Teams/>
         );
       default:
         return null;
