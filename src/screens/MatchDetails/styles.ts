@@ -189,6 +189,27 @@ export const FormRow = styled.View`
   margin-bottom:20px;
 `;
 
+
+export const PlayButton = styled.TouchableOpacity`
+  background-color: #FF6B00;
+  padding: 10px 20px;
+  border-radius: 50px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  width:200px;
+  height:50px;
+  align-self:center;
+`;
+
+export const ButtonText = styled.Text`
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 10px;
+`;
+
 export const Label = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.SEMIBOLD};
