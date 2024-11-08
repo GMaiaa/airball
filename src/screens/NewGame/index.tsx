@@ -18,7 +18,7 @@ export default function NewGame() {
 
     const onChangeDate = (event: any, selectedDate?: Date) => {
         const currentDate = selectedDate || data;
-        setShowDatePicker(false); // Fecha o seletor de data
+        setShowDatePicker(false);
         setData(currentDate);
     };
 
@@ -27,6 +27,10 @@ export default function NewGame() {
         setShowTimePicker(false);
         setHorario(currentTime);
     };
+
+    const capitalizeFirstLetter = (string: string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      };
 
     return (
         <ScrollView>
@@ -61,10 +65,17 @@ export default function NewGame() {
                     <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <InputText
-                                editable={false}
-                                placeholder="Escolha a Data do jogo"
-                                value={data.toLocaleDateString()}
-                                style={{ color: 'white', fontSize:16,}}
+                            editable={false}
+                            placeholder="Escolha a Data do jogo"
+                            value={capitalizeFirstLetter(
+                                data.toLocaleDateString('pt-BR', { 
+                                weekday: 'long', 
+                                day: '2-digit', 
+                                month: '2-digit', 
+                                year: 'numeric' 
+                                })
+                            )}
+                            style={{ color: 'white', fontSize: 16 }}
                             />
                         </View>
                     </TouchableOpacity>

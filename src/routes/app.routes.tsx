@@ -7,10 +7,12 @@ import Contact from "@screens/Contact";
 import { Home } from "@screens/Home";
 import { CourtForm } from "@screens/CourtForm";
 import MatchDetails from "@screens/MatchDetails";
+import Teams from "@screens/Teams";
+import TeamDetails from "@screens/TeamDetails";
 
 
 export type AppRoutes = {
-    TabBar: undefined;  // Defina o TabBar como uma rota principal
+    TabBar: undefined;
     CourtGames: undefined;
     MyProfile: undefined;
     Menu: undefined;
@@ -18,6 +20,8 @@ export type AppRoutes = {
     Home: undefined;
     CourtForm: undefined;
     MatchDetails:undefined;
+    Teams:undefined;
+    TeamDetails:undefined;
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<AppRoutes>();
@@ -33,6 +37,8 @@ export function AppRoutes() {
             <Screen name="Home" component= {Home} />
             <Screen name="CourtForm" component={CourtForm} />
             <Screen name="MatchDetails" component={MatchDetails} />
+            <Screen name="Teams" component={Teams} />
+            <Screen name="TeamDetails" component={TeamDetails} />
         </Navigator>
     );
 }

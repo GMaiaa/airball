@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
 import { Container, TeamContainer, TeamTitle, TeamMembers, MemberImage, JoinButton, CreateTeamButton, ButtonText } from "./styles";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from '@expo/vector-icons/Feather';
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 // Importe as imagens de avatar diretamente
 import avatar1 from "@assets/avatar.png";
@@ -36,6 +38,12 @@ export default function Teams() {
     },
   ];
 
+  const navigation = useNavigation<AuthNavigatorRoutesProps>()
+
+  function handleTeamDetails(){
+      navigation.navigate("TeamDetails");
+  }
+
   return (
     <Container>
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
@@ -60,7 +68,7 @@ export default function Teams() {
           </TeamContainer>
         ))}
         <CreateTeamButton>
-          <ButtonText>Criar Time</ButtonText>
+          <ButtonText onPress={handleTeamDetails}>Criar Time</ButtonText>
           <Feather name="arrow-right" size={18} color="white" />
         </CreateTeamButton>
       </ScrollView>

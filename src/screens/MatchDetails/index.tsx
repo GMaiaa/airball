@@ -7,8 +7,10 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import CourtIllustration from "@assets/Court.png";
 import Teams from "@screens/Teams";
 import Feather from '@expo/vector-icons/Feather';
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-export default function MatchDetails() {
+export default function MatchDetails(){
   const [selectedTab, setSelectedTab] = useState("Jogo");
   const frequencia = "Semanal";
   const data = new Date().toLocaleDateString();
@@ -17,6 +19,7 @@ export default function MatchDetails() {
   const nivel = "Amador";
 
   const renderContent = () => {
+    
     switch (selectedTab) {
       case "Jogo":
         return (
@@ -64,7 +67,7 @@ export default function MatchDetails() {
                   </InputContainer>
                   <InputLine />
 
-                  <PlayButton>
+                  <PlayButton onPress={() => setSelectedTab("Times")}>
                     <ButtonText>Jogar</ButtonText>
                     <Feather name="arrow-right" size={18} color="white" />
                   </PlayButton>
