@@ -7,12 +7,8 @@ import { Header } from '@components/Header';
 import { CourtCard } from '@components/CourtCard';
 import { ListEmpty } from '@components/ListEmpty';
 import CardComponent from '@components/MatchCard';
+import { AppRoutes } from "@routes/app.routes";
 
-type AppRoutes = {
-    TabBar: undefined;
-    CourtGames: undefined;
-    MatchDetails:undefined;
-};
 
 export function Home() {
   const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>();

@@ -4,14 +4,13 @@ import { Container, TeamContainer, TeamTitle, TeamMembers, MemberImage, JoinButt
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from '@expo/vector-icons/Feather';
 import { useNavigation } from "@react-navigation/native";
-import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
-
-// Importe as imagens de avatar diretamente
 import avatar1 from "@assets/avatar.png";
 import avatar2 from "@assets/avatar.png";
 import avatar3 from "@assets/avatar.png";
 import avatar4 from "@assets/avatar.png";
 import avatar5 from "@assets/avatar.png";
+import { AppRoutes } from "@routes/app.routes";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 export default function Teams() {
   const teams = [
@@ -38,11 +37,9 @@ export default function Teams() {
     },
   ];
 
-  const navigation = useNavigation<AuthNavigatorRoutesProps>()
+const navigation = useNavigation<StackNavigationProp<AppRoutes>>();
 
-  function handleTeamDetails(){
-      navigation.navigate("TeamDetails");
-  }
+
 
   return (
     <Container>
@@ -68,7 +65,7 @@ export default function Teams() {
           </TeamContainer>
         ))}
         <CreateTeamButton>
-          <ButtonText onPress={handleTeamDetails}>Criar Time</ButtonText>
+          <ButtonText onPress={() => navigation.navigate('TeamDetails')}>Criar Time</ButtonText>
           <Feather name="arrow-right" size={18} color="white" />
         </CreateTeamButton>
       </ScrollView>
