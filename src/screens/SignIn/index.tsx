@@ -6,12 +6,46 @@ import { Logo } from "@components/Logo";
 import { Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+import { useState } from "react";
+import { useAuth } from "@hooks/useAuth";
+import { Controller, useForm } from "react-hook-form";
+import { AppError } from "@utils/AppError";
+
+type FormData = {
+    email: string;
+    password: string;
+}
+
 
 export function SignIn() {
+    const [isLoading, setIsLoading] = useState(false)
+    const { signIn } = useAuth()
     const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
-    function handleNewAccount(){
+    const { control, handleSubmit, formState: { errors } } = useForm<FormData>()
+
+    function handleNewAccount() {
         navigation.navigate("signUp")
+    }
+
+    async function handleSignIn({ email, password }: FormData) {
+        try {
+            setIsLoading(true)
+            await signIn(email, password);
+
+        } catch (error) {
+            const isAppError = error instanceof AppError;
+
+            const title = isAppError ? error.message : 'Não foi possível entrar. Tente novamente mais tarde.'
+
+            console.log("Error:", title)
+
+            setIsLoading(false)
+
+        }
+
+
+
     }
 
     return (
@@ -23,8 +57,24 @@ export function SignIn() {
             />
 
             <Form>
-                <Input placeholder="Digite seu email" label="Email" />
-                <Input placeholder="Digite sua senha" label="Senha" />
+                <Controller
+                    control={control}
+                    name="email"
+                    rules={{ required: 'Informe o e-mail' }}
+                    render={({ field: { onChange, value } }) => (
+                        <Input label="Email" placeholder="Digite seu email" keyboardType="email-address" autoCapitalize="none" onChangeText={onChange} value={value}
+                            errorMessage={errors.email?.message} />
+                    )}
+                />
+                <Controller
+                    control={control}
+                    name="password"
+                    rules={{ required: 'Informe a senha' }}
+                    render={({ field: { onChange, value } }) => (
+                        <Input label="Senha" placeholder="Digite sua senha" secureTextEntry onChangeText={onChange} value={value}
+                            errorMessage={errors.password?.message} />
+                    )}
+                />
                 <ForgotPassword onPress={() => { }}>
                     <ForgotText>
                         Esqueceu a senha?
@@ -36,6 +86,7 @@ export function SignIn() {
                     title="Continuar"
                     type="OUTLINED"
                     size="LARGE"
+                    onPress={handleSubmit(handleSignIn)}
                 />
 
                 <TextRow>

@@ -17,9 +17,12 @@ import { MenuOption } from "@components/MenuOption";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { AppRoutes } from '../../routes/app.routes'; // Ajuste o caminho conforme necessário
+import { useAuth } from "@hooks/useAuth";
 
 export default function Menu() {
   const navigation = useNavigation<StackNavigationProp<AppRoutes>>(); // Corrigido aqui
+
+  const {signOut} = useAuth()
 
   function handleMyProfilePress() {
     navigation.navigate("MyProfile");
@@ -60,6 +63,7 @@ export default function Menu() {
       <MenuOption title="Contato" subtitle="Entre em contato conosco" onPress={handleContactPress}/>
       <MenuOption title="Sobre a Airball" subtitle="Saiba mais sobre nós" />
       <MenuOption title="Termos e condições" subtitle="Políticas de uso" />
+      <MenuOption title="Sair" subtitle="Sair da sua conta" onPress={signOut}/>
     </Container>
   );
 }

@@ -8,7 +8,7 @@
         "./src/assets/*"
       ],
       "@components/*": [
-        "src/components/*"
+        "./src/components/*"
       ],
       "@routes/*": [
         "./src/routes/*"
@@ -24,6 +24,18 @@
       ],
       "@utils/*": [
         "./src/utils/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ], 
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@dtos/*": [
+        "./src/dtos/*"
       ]
     }
   }
