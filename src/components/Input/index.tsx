@@ -1,19 +1,38 @@
 import { TextInputProps } from "react-native";
-import { InputTypeStyleProps, Container, InputField, Label, PickerContainer } from "./styles"; // Adicione o PickerContainer aos seus estilos
+import {
+    InputTypeStyleProps,
+    Container,
+    InputField,
+    Label,
+    PickerContainer,
+    FormControlError,
+    FormControlErrorText
+} from "./styles";
 import theme from "@theme/index";
 import { useState } from "react";
-import { Picker } from '@react-native-picker/picker'; // Certifique-se de instalar @react-native-picker/picker
+import { Picker } from '@react-native-picker/picker';
 
 type Props = TextInputProps & {
     placeholder: string;
     label: string;
     type?: InputTypeStyleProps;
     hasContent?: any;
-    isTextarea?: boolean; 
-    options?: string[]; 
+    isTextarea?: boolean;
+    options?: string[];
+    errorMessage?: string | null;
+    isInvalid?: boolean;
+    isReadOnly?: boolean;
 };
 
-export function Input({ placeholder, label, type = 'DEFAULT', isTextarea = false, options = [], ...rest }: Props) {
+export function Input({
+    placeholder,
+    label,
+    type = 'DEFAULT',
+    isTextarea = false,
+    options = [],
+    errorMessage,
+    ...rest
+}: Props) {
     const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState('');
 
@@ -41,6 +60,7 @@ export function Input({ placeholder, label, type = 'DEFAULT', isTextarea = false
                     placeholderTextColor={theme.COLORS.GRAY_300}
                     isFocused={isFocused}
                     hasContent={!!value}
+                    isInvalid={!!errorMessage}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                     multiline={isTextarea}
@@ -49,19 +69,11 @@ export function Input({ placeholder, label, type = 'DEFAULT', isTextarea = false
                     {...rest}
                 />
             )}
-            <Label> {label} </Label>
-            <InputField
-                value={value}
-                onChangeText={setValue}
-                placeholder={placeholder}
-                placeholderTextColor={theme.COLORS.GRAY_300}
-                isFocused={isFocused}
-                hasContent={!!value}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                keyboardAppearance="dark"
-                {...rest}
-            />
+            {errorMessage && (
+                <FormControlError>
+                    <FormControlErrorText>{errorMessage}</FormControlErrorText>
+                </FormControlError>
+            )}
         </Container>
     );
 }

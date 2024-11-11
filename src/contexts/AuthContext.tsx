@@ -8,7 +8,7 @@ import { UserDTO } from "@dtos/UserDTO";
 
 export type AuthContextDataProps = {
   user: UserDTO;
-  singIn: (email: string, password: string) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   isLoadingUserStorageData: boolean;
 }
@@ -43,9 +43,10 @@ export function AuthContextProvider({ children }: AuthContextProviderProps)  {
     }
   }
 
-  async function singIn(email: string, password: string) {
+  async function signIn(email: string, password: string) {
     try {
-      const { data } = await api.post('/sessions', { email, password });
+      const { data } = await api.post('/auth/signin', { email, password });
+      console.log(data)
      
       if(data.user && data.token) {
         await storageUserAndTokenSave(data.user, data.token);
@@ -95,7 +96,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps)  {
   return (
     <AuthContext.Provider value={{ 
       user, 
-      singIn,
+      signIn,
       signOut,
       isLoadingUserStorageData
     }}>
