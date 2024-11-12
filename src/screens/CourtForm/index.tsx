@@ -6,6 +6,13 @@ import { View, Text, Image, ScrollView } from "react-native"; // Import ScrollVi
 import { Label } from '@components/Label';
 import StarRating from '@components/StarRating';
 import * as ImagePicker from 'expo-image-picker';
+import { api } from '@services/api';
+
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AppError } from '@utils/AppError';
+import { AppRoutes } from '@routes/app.routes';
+
 
 export function CourtForm() {
     const [formPage, setFormPage] = useState(1);
@@ -14,9 +21,15 @@ export function CourtForm() {
     const [courtAddress, setCourtAddress] = useState('');
     const [lightRating, setLightRating] = useState(0);
     const [hoopRating, setHoopRating] = useState(0);
-    const [courtImage, setCourtImage] = useState(null);
+    const [courtImage, setCourtImage] = useState<ImagePicker.ImagePickerAsset | null>(null);
+
+    const navigation = useNavigation<StackNavigationProp<AppRoutes>>();
 
     function handleFormContinue() {
+        if (formPage === 1 && (!courtName || !courtType || !courtAddress)) {
+            alert("Preencha todos os campos antes de prosseguir");
+            return;
+        }
         if (formPage === 2) {
             handleSubmit();
         } else {
@@ -31,24 +44,37 @@ export function CourtForm() {
             aspect: [4, 3],
             quality: 1,
         });
-
-        console.log(result);
-
-        if (!result.canceled) {
+    
+        if (!result.canceled && result.assets && result.assets.length > 0) {
             setCourtImage(result.assets[0]);
         }
     };
 
-    function handleSubmit() {
-        const data = {
-            name: courtName,
-            type: courtType,
-            address: courtAddress,
-            light_rating: lightRating,
-            hoop_rating: hoopRating,
-            image: courtImage,
-        };
-        console.log(data);
+   async function handleSubmit() {
+        try {
+            const data = {
+                name: courtName,
+                type: courtType,
+                address: courtAddress,
+                lighting_quality: lightRating,
+                hoop_quality: hoopRating,
+                usage_freuency: 5,
+                image: courtImage,
+            };
+            console.log(data)
+
+           await api.post("/courts/create", data)
+           navigation.navigate("Home")
+        
+        } catch (error) {
+            console.log(error)
+            const isAppError = error instanceof AppError;
+
+            const title = isAppError ? error.message : 'Não foi possível criar a conta. Tente novamente mais tarde';
+
+            console.log("ERROR: ", title)
+        }
+       
     }
 
     return (
