@@ -117,7 +117,7 @@ export function SignUp() {
                     name="password_confirm"
                     render={({ field: { onChange, value } }) => (
                         <Input
-                            label="Senha"
+                            label="Confirmar senha"
                             placeholder="Confirme a sua senha"
                             onChangeText={onChange}
                             value={value}

@@ -54,11 +54,11 @@ export function CourtForm() {
         try {
             const data = {
                 name: courtName,
-                type: courtType,
                 address: courtAddress,
+                type: courtType,
                 lighting_quality: lightRating,
                 hoop_quality: hoopRating,
-                usage_freuency: 5,
+                usage_frequency: 5,
                 image: courtImage,
             };
             console.log(data)

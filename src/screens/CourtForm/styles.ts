@@ -66,8 +66,7 @@ export const FileInput = styled.Pressable`
     width: 100%;
     min-height: 150px;
     max-height: 200px;
-    justifyContent: center;
-    alignItems: center;
+    justify-content: center;
     border: 2px dotted ${({ theme }) => theme.COLORS.GRAY_300};
     font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
     color: #000;
@@ -78,7 +77,6 @@ export const FileInput = styled.Pressable`
     cursor: pointer;
     transition: background-color 0.3s;
     text-align: center;
-    justify-content: center;
 `
 
 export const ProgressContainer = styled.View`
@@ -121,5 +119,5 @@ export const RemainingProgress = styled.View`
 export const Placeholder = styled.Text`
     color: ${({ theme }) => theme.COLORS.GRAY_300};
     font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
-    fontSize: 16px;
+    font-size: 16px;
 `
