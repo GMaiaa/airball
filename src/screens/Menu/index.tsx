@@ -11,25 +11,24 @@ import {
   UserNamePosition,
   EditPositionArea,
 } from "./styles";
-import theme from "../../theme"; // Ajuste o caminho conforme sua estrutura
-import { Feather } from "@expo/vector-icons"; // Usando Feather para o novo ícone
+import theme from "../../theme";
+import { Feather } from "@expo/vector-icons";
 import { MenuOption } from "@components/MenuOption";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { AppRoutes } from '../../routes/app.routes'; // Ajuste o caminho conforme necessário
+import { AppRoutes } from '../../routes/app.routes';
 import { useAuth } from "@hooks/useAuth";
 
 export default function Menu() {
-  const navigation = useNavigation<StackNavigationProp<AppRoutes>>(); // Corrigido aqui
-
-  const {signOut} = useAuth()
+  const navigation = useNavigation<StackNavigationProp<AppRoutes>>();
+  const { user, signOut } = useAuth();
 
   function handleMyProfilePress() {
     navigation.navigate("MyProfile");
   }
 
   function handleContactPress() {
-    navigation.navigate("Contact")
+    navigation.navigate("Contact");
   }
 
   function handleClosePress() {
@@ -45,13 +44,16 @@ export default function Menu() {
       </View>
 
       <UserInfoContainer>
-        <ProfilePic size="large" source={require("@assets/avatar.png")} />
+        <ProfilePic
+          size="large"
+          source={user.avatar ? { uri: user.avatar } : require("@assets/avatarDefault.png")}
+        />
         <View style={{ marginLeft: 15 }}>
           <UserNamePosition>
-            <UserName>Nome do Usuário</UserName>
+            <UserName>{user.name || "Nome do Usuário"}</UserName>
             <UserPositionContainer>
               <EditPositionArea onPress={() => console.log("Clicou no texto ou ícone")}>
-                <UserPosition>Armador</UserPosition>
+                <UserPosition>{user.prefered_position || "Não especificado"}</UserPosition>
                 <Feather name="edit" size={20} color={theme.COLORS.GRAY_100} />
               </EditPositionArea>
             </UserPositionContainer>
@@ -60,10 +62,10 @@ export default function Menu() {
       </UserInfoContainer>
 
       <MenuOption title="Meu perfil" subtitle="Informações da minha conta" onPress={handleMyProfilePress} />
-      <MenuOption title="Contato" subtitle="Entre em contato conosco" onPress={handleContactPress}/>
+      <MenuOption title="Contato" subtitle="Entre em contato conosco" onPress={handleContactPress} />
       <MenuOption title="Sobre a Airball" subtitle="Saiba mais sobre nós" />
       <MenuOption title="Termos e condições" subtitle="Políticas de uso" />
-      <MenuOption title="Sair" subtitle="Sair da sua conta" onPress={signOut}/>
+      <MenuOption title="Sair" subtitle="Sair da sua conta" onPress={signOut} />
     </Container>
   );
 }
