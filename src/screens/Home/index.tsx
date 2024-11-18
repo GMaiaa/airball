@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, ScrollView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -8,20 +8,45 @@ import { CourtCard } from '@components/CourtCard';
 import { ListEmpty } from '@components/ListEmpty';
 import CardComponent from '@components/MatchCard';
 import { AppRoutes } from "@routes/app.routes";
+import { CourtDTO } from '@dtos/CourtDTO';
+import { api } from '@services/api';
+import { AppError } from '@utils/AppError';
 
 
 export function Home() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [courts, setCourts] = useState<CourtDTO[]>([])
   const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>();
 
-  const courts = [
-    { title: "Quadra Tiquatira", distance: 0.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
-    { title: "Quadra da Jacui", distance: 2.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
-  ];
+  // const courts = [
+  //   { title: "Quadra Tiquatira", distance: 0.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
+  //   { title: "Quadra da Jacui", distance: 2.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
+  // ];
 
   let popularGames = [
     { title: "Sesc Consolação", timestamp: "2 hours", location: "São Paulo", userCount: "22" },
     { title: "Sesc Itaquera", timestamp: "15 Horas - Todos os dias", location: "Itaquera", userCount: "10" },
   ];
+
+  async function fetchCourts() {
+    try {
+        setIsLoading(true)
+        const response = await api.get(`/courts/getAll`)
+        setCourts(response.data)
+
+
+    } catch (error) {
+        const isAppError = error instanceof AppError;
+        const title = isAppError ? error.message : "Não foi possível carregar os exercícios"
+        console.log("Erro:", title)
+    } finally {
+        setIsLoading(false)
+    }
+}
+
+useEffect(() => {
+  fetchCourts();
+}, [])
 
   return (
     <Container>
@@ -41,12 +66,12 @@ export function Home() {
 
             <FlatList
               data={courts}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={item => item.id}
               renderItem={({ item }) => (
                 <CourtCard 
-                  title={item.title} 
-                  distance={item.distance} 
-                  photo={item.photo} 
+                  title={item.name} 
+                  distance={0.8}
+                  photo={item.image} 
                   onPress={() => navigation.navigate('CourtGames')}
                 />
               )}
