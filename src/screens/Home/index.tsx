@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, ScrollView, View } from 'react-native';
+import { FlatList, ScrollView, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Container, Content, CourtWrapper, HeaderWrapper, Icon, IconButton, Title, TitleSection } from './styles';
@@ -11,42 +11,91 @@ import { AppRoutes } from "@routes/app.routes";
 import { CourtDTO } from '@dtos/CourtDTO';
 import { api } from '@services/api';
 import { AppError } from '@utils/AppError';
+import * as Location from 'expo-location';
 
+function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371; // Raio da Terra em km
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; 
+}
 
 export function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [courts, setCourts] = useState<CourtDTO[]>([])
+  const [isLoading, setIsLoading] = useState(true);
+  const [courts, setCourts] = useState<CourtDTO[]>([]);
+  const [currentLocation, setCurrentLocation] = useState({ latitude: 0, longitude: 0 });
   const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>();
 
-  // const courts = [
-  //   { title: "Quadra Tiquatira", distance: 0.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
-  //   { title: "Quadra da Jacui", distance: 2.8, photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy86PWXG52nr_k2ydflmVydZx56F0DrmwRg&s" },
-  // ];
-
-  let popularGames = [
+  const popularGames = [
     { title: "Sesc Consolação", timestamp: "2 hours", location: "São Paulo", userCount: "22" },
     { title: "Sesc Itaquera", timestamp: "15 Horas - Todos os dias", location: "Itaquera", userCount: "10" },
   ];
 
   async function fetchCourts() {
     try {
-        setIsLoading(true)
-        const response = await api.get(`/courts/getAll`)
-        setCourts(response.data)
-
-
+      setIsLoading(true);
+      const response = await api.get(`/courts/getAll`);
+      const courtsWithDistance = response.data.map((court: CourtDTO) => {
+        const distance = calculateDistance(
+          currentLocation.latitude,
+          currentLocation.longitude,
+          court.latitude,
+          court.longitude
+        );
+        return { ...court, distance };
+      });
+      setCourts(courtsWithDistance);
     } catch (error) {
-        const isAppError = error instanceof AppError;
-        const title = isAppError ? error.message : "Não foi possível carregar os exercícios"
-        console.log("Erro:", title)
+      const isAppError = error instanceof AppError;
+      const title = isAppError ? error.message : "Não foi possível carregar as quadras.";
+      Alert.alert("Erro", title);
     } finally {
-        setIsLoading(false)
+      setIsLoading(false);
     }
-}
+  }
 
-useEffect(() => {
-  fetchCourts();
-}, [])
+  async function getUserLocation() {
+    try {
+      // Solicitar permissões
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert(
+          'Permissão negada',
+          'Precisamos da sua permissão para acessar a localização.'
+        );
+        return;
+      }
+
+      // Obter localização atual
+      const location = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.High,
+      });
+
+      const { latitude, longitude } = location.coords;
+      console.log({ latitude, longitude })
+      setCurrentLocation({ latitude, longitude });
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError ? error.message : "Não foi possível pegar a loc.";
+      console.log("ERRO: ", title)
+    }
+  }
+
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+
+  useEffect(() => {
+      fetchCourts();
+  }, [currentLocation]);
 
   return (
     <Container>
@@ -70,7 +119,7 @@ useEffect(() => {
               renderItem={({ item }) => (
                 <CourtCard 
                   title={item.name} 
-                  distance={0.8}
+                  distance={Number(item.distance.toFixed(1))} 
                   photo={item.image} 
                   onPress={() => navigation.navigate('CourtGames')}
                 />

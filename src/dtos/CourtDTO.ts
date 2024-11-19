@@ -7,4 +7,7 @@ export type CourtDTO = {
     lighting_quality: number;
     hoop_quality: number;
     usage_frequency: number;
+    latitude: number;
+    longitude: number;
+    distance: number;
   };
