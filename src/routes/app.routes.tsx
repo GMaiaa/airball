@@ -13,7 +13,7 @@ import TeamDetails from "@screens/TeamDetails";
 
 export type AppRoutes = {
     TabBar: undefined;
-    CourtGames: undefined;
+    CourtGames: { courtId: string };
     MyProfile: undefined;
     Menu: undefined;
     Contact: undefined;

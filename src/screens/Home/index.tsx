@@ -62,6 +62,10 @@ export function Home() {
     }
   }
 
+  function handleOpenCourtDetails(courtId: string){
+    navigation.navigate("CourtGames", {courtId});
+  }
+
   async function getUserLocation() {
     try {
       // Solicitar permissões
@@ -74,7 +78,6 @@ export function Home() {
         return;
       }
 
-      // Obter localização atual
       const location = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.High,
       });
@@ -121,7 +124,7 @@ export function Home() {
                   title={item.name} 
                   distance={Number(item.distance.toFixed(1))} 
                   photo={item.image} 
-                  onPress={() => navigation.navigate('CourtGames')}
+                  onPress={() => handleOpenCourtDetails(item.id)}
                 />
               )}
               horizontal

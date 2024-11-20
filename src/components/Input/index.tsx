@@ -22,6 +22,7 @@ type Props = TextInputProps & {
     errorMessage?: string | null;
     isInvalid?: boolean;
     isReadOnly?: boolean;
+    onChange?: (value: string) => void;
 };
 
 export function Input({
@@ -31,10 +32,18 @@ export function Input({
     isTextarea = false,
     options = [],
     errorMessage,
+    onChange,
     ...rest
 }: Props) {
     const [isFocused, setIsFocused] = useState(false);
     const [value, setValue] = useState('');
+
+    const handleValueChange = (itemValue: string) => {
+        setValue(itemValue);
+        if (onChange) {
+            onChange(itemValue);
+        }
+    };
 
     return (
         <Container>
@@ -43,7 +52,7 @@ export function Input({
                 <PickerContainer>
                     <Picker
                         selectedValue={value}
-                        onValueChange={(itemValue) => setValue(itemValue)}
+                        onValueChange={handleValueChange}
                         style={{ color: theme.COLORS.GRAY_100 }}
                     >
                         <Picker.Item label={placeholder} value="" />

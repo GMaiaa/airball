@@ -35,6 +35,8 @@ export default function Menu() {
     navigation.navigate("Home"); 
   }
 
+  console.log(user)
+
   return (
     <Container>
       <View style={{ flexDirection: "row", justifyContent: "flex-end", padding: 20 }}>

@@ -32,9 +32,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ title, timestamp, location, userC
       <Card size={size} width={width}>
         <Title size={size}>{title}</Title>
         <ProfileRow>
-          <ProfilePic size={size} source={require('@assets/avatar.png')} />
-          <ProfilePic size={size} source={require('@assets/avatar.png')} />
-          <ProfilePic size={size} source={require('@assets/avatar.png')} />
+          <ProfilePic size={size} source={require('@assets/avatarDefault.png')} />
           <UserIcon size={size}>
             <FontAwesome5 name="user-alt" size={size === 'small' ? 8 : 10} color="black" />
             <GhostText size={size}>{userCount}</GhostText>

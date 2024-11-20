@@ -36,9 +36,9 @@ const profileSchema = yup.object().shape({
   name: yup.string().required("O nome é obrigatório"),
   email: yup.string().email("E-mail inválido").required("O e-mail é obrigatório"),
   position: yup
-  .string()
-  .oneOf(basketballPositions, "Posição preferida inválida")
-  .required("A posição preferida é obrigatória"),
+    .string()
+    .oneOf(basketballPositions, "Posição preferida inválida")
+    .required("A posição preferida é obrigatória"),
   bio: yup.string().max(300, "A bio não pode exceder 300 caracteres"),
 });
 
@@ -46,7 +46,7 @@ export default function MyProfile() {
 
   const navigation = useNavigation<StackNavigationProp<AppRoutes>>();
   const [userAvatar, setUserAvatar] = useState<ImagePicker.ImagePickerAsset | null>(null);
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
 
   const {
     control,
@@ -81,25 +81,34 @@ export default function MyProfile() {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  
+
 
   const onSubmit = async (data: any) => {
     try {
       const response = await api.put(`users/${user.id}`, {
         name: data.name,
         prefered_position: data.position,
-        avatar: userAvatar,
+        avatar: userAvatar ? userAvatar.uri : user.avatar,
         bio: data.bio,
-      })
-
+      });
+  
+      const updatedUser = {
+        ...user,
+        name: data.name,
+        prefered_position: data.position,
+        avatar: userAvatar ? userAvatar.uri : user.avatar,
+        bio: data.bio,
+      };
+  
+      await updateUser(updatedUser); 
+  
       console.log("Usuário atualizado com sucesso:", response.data);
-
+  
     } catch (error) {
       console.error("Erro ao atualizar perfil:", error);
       alert("Ocorreu um erro ao atualizar o perfil.");
     }
   };
-
 
 
   return (
@@ -108,7 +117,7 @@ export default function MyProfile() {
         <BackButton title="Opções de perfil" onPress={() => navigation.navigate("Menu")} />
 
         <UserPictureArea onPress={selectImage}>
-          <ProfilePic size="large" source={userAvatar ? { uri: userAvatar.uri } : (user.avatar ? { uri: user.avatar } : require("@assets/avatarDefault.png"))}  />
+          <ProfilePic size="large" source={userAvatar ? { uri: userAvatar.uri } : (user.avatar ? { uri: user.avatar } : require("@assets/avatarDefault.png"))} />
           <CameraIcon name="camera" size={24} color="black" />
         </UserPictureArea>
 
@@ -147,13 +156,14 @@ export default function MyProfile() {
           <Controller
             name="position"
             control={control}
-            render={({ field: { onChange, value } }) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 placeholder="Posição preferida na quadra"
                 label="Posição preferida"
                 options={basketballPositions}
-                onChangeText={onChange}
                 value={value}
+                onChange={onChange}
+                onBlur={onBlur}
                 errorMessage={errors.position?.message}
               />
             )}
