@@ -21,16 +21,17 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
   const a =
     Math.sin(dLat / 2) ** 2 +
     Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) ** 2;
+    Math.cos((lat2 * Math.PI) / 180) *
+    Math.sin(dLon / 2) ** 2;
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c; 
+  return R * c;
 }
 
 export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [courts, setCourts] = useState<CourtDTO[]>([]);
+  const [matches, setMatches] = useState<any[]>([]);
   const [currentLocation, setCurrentLocation] = useState({ latitude: 0, longitude: 0 });
   const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>();
 
@@ -62,13 +63,27 @@ export function Home() {
     }
   }
 
-  function handleOpenCourtDetails(courtId: string){
-    navigation.navigate("CourtGames", {courtId});
+  async function fetchMatches() {
+    try {
+      setIsLoading(true);
+      const response = await api.get(`/matches`);
+      console.log(response.data)
+      setMatches(response.data);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError ? error.message : "Não foi possível carregar as partidas.";
+      Alert.alert("Erro", title);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  function handleOpenCourtDetails(courtId: string) {
+    navigation.navigate("CourtGames", { courtId });
   }
 
   async function getUserLocation() {
     try {
-      // Solicitar permissões
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert(
@@ -92,13 +107,22 @@ export function Home() {
     }
   }
 
+   async function handleOpenMatchDetails(matchId: string){
+    navigation.navigate("MatchDetails", { matchId });
+  }
+
   useEffect(() => {
     getUserLocation();
   }, []);
 
   useEffect(() => {
-      fetchCourts();
+    fetchCourts();
   }, [currentLocation]);
+
+  useEffect(() => {
+    fetchMatches();
+  }, []);
+
 
   return (
     <Container>
@@ -106,7 +130,7 @@ export function Home() {
       <ScrollView>
         <Content>
           <Title> Bem-vindo ao AirBall! Pronto para dominar a quadra? </Title>
-          
+
           <CourtWrapper>
             <HeaderWrapper>
               <TitleSection> Quadras </TitleSection>
@@ -120,10 +144,10 @@ export function Home() {
               data={courts}
               keyExtractor={item => item.id}
               renderItem={({ item }) => (
-                <CourtCard 
-                  title={item.name} 
-                  distance={Number(item.distance.toFixed(1))} 
-                  photo={item.image} 
+                <CourtCard
+                  title={item.name}
+                  distance={Number(item.distance.toFixed(1))}
+                  photo={item.image}
                   onPress={() => handleOpenCourtDetails(item.id)}
                 />
               )}
@@ -141,17 +165,18 @@ export function Home() {
             <HeaderWrapper>
               <TitleSection> Jogos Populares </TitleSection>
             </HeaderWrapper>
-            
+
             <FlatList
-              data={popularGames}
-              keyExtractor={(item, index) => index.toString()}
+              data={matches}
+              keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
-                <CardComponent 
-                  title={item.title} 
-                  timestamp={item.timestamp} 
-                  location={item.location} 
-                  userCount={item.userCount} 
+                <CardComponent
+                  title={`Team ${item.teams[0]?.players[0]?.player?.name} vs Team ${item.teams[1]?.players[0]?.player?.name || "B"}`}
+                  timestamp={new Date(item.date).toLocaleString()}
+                  location={item.court.address || "Endereço não disponível"}
+                  userCount={`${item.teams[0]?.players.length + item.teams[1]?.players.length} jogadores`}
                   size="small"
+                  onPress={() => handleOpenMatchDetails(item.id)}
                 />
               )}
               horizontal

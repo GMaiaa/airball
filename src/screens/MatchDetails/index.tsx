@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { Container,CourtHeader,ImageCourt,Title,Line,Content,IconContainer,TabContainer,TabButton,TabButtonText,MatchName,ProfileRow,ProfilePic,UserIcon,GhostText,FormRow,Label,InputContainer,InputLine,GameDetails,DetailRow,DetailIcon,DetailText,PlayButton,ButtonText } from "./styles";
 import { Header } from "@components/Header";
@@ -7,16 +7,47 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import CourtIllustration from "@assets/Court.png";
 import Teams from "@screens/Teams";
 import Feather from '@expo/vector-icons/Feather';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+import { api } from "@services/api";
+import { AppError } from "@utils/AppError";
+
+type RouteParamsProps = {
+  matchId: string;
+}
 
 export default function MatchDetails(){
   const [selectedTab, setSelectedTab] = useState("Jogo");
+  const [isLoading, setIsLoading] = useState(true);
+  const [match, setMatch] = useState<any>(null); 
   const frequencia = "Semanal";
   const data = new Date().toLocaleDateString();
   const horario = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   const quadra = "Quadra Inteira";
   const nivel = "Amador";
+
+  const route = useRoute();
+  const { matchId } = route.params as RouteParamsProps;
+
+  console.log(matchId)
+
+
+  async function fetchMatchDetails() {
+    try {
+      setIsLoading(true);
+      const response = await api.get(`/matches/${matchId}`);
+      console.log(response.data)
+      setMatch(response.data);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError
+        ? error.message
+        : "Não foi possível carregar os detalhes da quadra.";
+      console.log("Erro: ", title);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const renderContent = () => {
     
@@ -87,13 +118,17 @@ export default function MatchDetails(){
     }
   };
 
+  useEffect(() => {
+    fetchMatchDetails();
+  }, [matchId]);
+
   return (
     <Container>
       <Header />
       <Line />
       <CourtHeader>
         <ImageCourt source={CourtIllustration} />
-        <Title>Quadra Parque Ibirapuera</Title>
+        <Title>Teste</Title>
         <IconContainer>
           <AntDesign name="sharealt" size={24} color="white" />
           <AntDesign name="hearto" size={24} color="white" />

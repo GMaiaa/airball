@@ -28,6 +28,9 @@ import { AppError } from "@utils/AppError";
 import { api } from "@services/api";
 import { Loading } from "@components/Loading"; 
 import { ListEmpty } from "@components/ListEmpty";
+import { useNavigation } from "expo-router";
+import { AppRoutes } from "@routes/app.routes";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type RouteParamsProps = {
   courtId: string;
@@ -41,6 +44,8 @@ export default function CourtGames() {
 
   const route = useRoute();
   const { courtId } = route.params as RouteParamsProps;
+  const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>();
+
 
   async function fetchCourtDetails() {
     try {
@@ -74,6 +79,10 @@ export default function CourtGames() {
     }
   }
 
+   async function handleOpenMatchDetails(matchId: string){
+    navigation.navigate("MatchDetails", { matchId });
+  }
+
   const renderContent = () => {
     switch (selectedTab) {
       case "Jogos":
@@ -88,6 +97,7 @@ export default function CourtGames() {
                   location={court?.address || "Endereço não disponível"} 
                   userCount={`${item.teams[0]?.players.length + item.teams[1]?.players.length} jogadores`} 
                   size="large"
+                  onPress={() => handleOpenMatchDetails(item.id)}
                 />
               )}
               horizontal

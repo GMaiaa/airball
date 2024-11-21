@@ -18,17 +18,14 @@ interface MatchCardProps {
   userCount: string;
   size?: 'large' | 'small'; // Prop opcional para escolher o tamanho do cartão
   width?: number; // Prop opcional para definir a largura do cartão
+  onPress: () => void; 
 }
 
 const MatchCard: React.FC<MatchCardProps> = ({ title, timestamp, location, userCount, size = 'large', width }) => {
   const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>();
 
-  const handlePress = () => {
-    navigation.navigate('MatchDetails');
-  };
-
   return (
-    <TouchableOpacity onPress={handlePress} activeOpacity={0.7}>
+    <TouchableOpacity activeOpacity={0.7}>
       <Card size={size} width={width}>
         <Title size={size}>{title}</Title>
         <ProfileRow>
@@ -48,7 +45,7 @@ const MatchCard: React.FC<MatchCardProps> = ({ title, timestamp, location, userC
           </LocationContainer>
         )}
 
-        <PlayButton size={size} onPress={handlePress}>
+        <PlayButton size={size}>
           <PlayText size={size}>▶ Play</PlayText>
         </PlayButton>
       </Card>

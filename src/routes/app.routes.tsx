@@ -19,7 +19,7 @@ export type AppRoutes = {
     Contact: undefined;
     Home: undefined;
     CourtForm: undefined;
-    MatchDetails:undefined;
+    MatchDetails: { matchId: string };
     Teams:undefined;
     TeamDetails:undefined;
 };
