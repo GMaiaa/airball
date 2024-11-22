@@ -9,6 +9,8 @@ import { CourtForm } from "@screens/CourtForm";
 import MatchDetails from "@screens/MatchDetails";
 import Teams from "@screens/Teams";
 import TeamDetails from "@screens/TeamDetails";
+import { AboutUs } from "@screens/AboutUs";
+import { TermsAndConditions } from "@screens/TermsAndConditions";
 
 
 export type AppRoutes = {
@@ -22,6 +24,8 @@ export type AppRoutes = {
     MatchDetails: { matchId: string };
     Teams:undefined;
     TeamDetails:undefined;
+    AboutUs:undefined;
+    TermsAndConditions:undefined;
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<AppRoutes>();
@@ -39,6 +43,8 @@ export function AppRoutes() {
             <Screen name="MatchDetails" component={MatchDetails} />
             <Screen name="Teams" component={Teams} />
             <Screen name="TeamDetails" component={TeamDetails} />
+            <Screen name="AboutUs" component={AboutUs} />
+            <Screen name="TermsAndConditions" component={TermsAndConditions} />
         </Navigator>
     );
 }

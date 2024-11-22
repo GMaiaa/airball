@@ -10,6 +10,10 @@ import CourtGames from '@screens/CourtGames';
 import { SignIn } from '@screens/SignIn';
 import { Routes } from '@routes/index';
 import { AuthContextProvider } from '@contexts/AuthContext';
+import Contact from '@screens/Contact';
+import { NavigationContainer } from '@react-navigation/native';
+import { AboutUs } from '@screens/AboutUs';
+import { TermsAndConditions } from '@screens/TermsAndConditions';
 
 
 
@@ -24,7 +28,10 @@ export default function App() {
         translucent
       />
       <AuthContextProvider>
-        {fontsLoaded ? <Routes /> : <Loading />}
+        <NavigationContainer>
+
+        {fontsLoaded ? <AboutUs/> : <Loading />}
+        </NavigationContainer>
       </AuthContextProvider>
     </ThemeProvider>
   );

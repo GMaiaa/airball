@@ -31,6 +31,14 @@ export default function Menu() {
     navigation.navigate("Contact");
   }
 
+  function handleAboutUsPress() {
+    navigation.navigate("AboutUs");
+  }
+
+  function handleTermsAndConditionsPress() {
+    navigation.navigate("TermsAndConditions");
+  }
+
   function handleClosePress() {
     navigation.navigate("Home"); 
   }
@@ -65,8 +73,8 @@ export default function Menu() {
 
       <MenuOption title="Meu perfil" subtitle="Informações da minha conta" onPress={handleMyProfilePress} />
       <MenuOption title="Contato" subtitle="Entre em contato conosco" onPress={handleContactPress} />
-      <MenuOption title="Sobre a Airball" subtitle="Saiba mais sobre nós" />
-      <MenuOption title="Termos e condições" subtitle="Políticas de uso" />
+      <MenuOption title="Sobre a Airball" subtitle="Saiba mais sobre nós" onPress={handleAboutUsPress}/>
+      <MenuOption title="Termos e condições" subtitle="Políticas de uso" onPress={handleTermsAndConditionsPress}/>
       <MenuOption title="Sair" subtitle="Sair da sua conta" onPress={signOut} />
     </Container>
   );
