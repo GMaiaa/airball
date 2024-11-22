@@ -1,73 +1,99 @@
 import React from "react";
-import { View, Text, TouchableOpacity, ScrollView, Image } from "react-native";
-import { Container, TeamContainer, TeamTitle, TeamMembers, MemberImage, JoinButton, CreateTeamButton, ButtonText } from "./styles";
+import { View, ScrollView } from "react-native";
+import {
+  Container,
+  TeamContainer,
+  TeamTitle,
+  TeamMembers,
+  MemberImage,
+  JoinButton,
+  CreateTeamButton,
+  ButtonText,
+} from "./styles";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Feather from '@expo/vector-icons/Feather';
+import Feather from "@expo/vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
-import avatar1 from "@assets/avatar.png";
-import avatar2 from "@assets/avatar.png";
-import avatar3 from "@assets/avatar.png";
-import avatar4 from "@assets/avatar.png";
-import avatar5 from "@assets/avatar.png";
-import { AppRoutes } from "@routes/app.routes";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { AppRoutes } from "@routes/app.routes";
+import { useAuth } from "@hooks/useAuth";
+import { api } from "@services/api";
+import { AppError } from "@utils/AppError";
 
-export default function Teams() {
-  const teams = [
-    {
-      id: 1,
-      name: "Time 1",
-      members: [avatar1, avatar2, avatar3,avatar4,avatar5],
-      isPrivate: true,
-      buttonText: "Pedir para entrar",
-    },
-    {
-      id: 2,
-      name: "Time Lakers",
-      members: [avatar1, avatar2, avatar3,avatar4],
-      isPrivate: false,
-      buttonText: "Entrar",
-    },
-    {
-      id: 3,
-      name: "Time Brazas",
-      members: [avatar1, avatar2, avatar3],
-      isPrivate: false,
-      buttonText: "Entrar",
-    },
-  ];
+// Interface para tipar os times
+interface Team {
+  id: number;
+  isTeamA: boolean;
+  matchId: number;
+  isPrivate: boolean;
+  players: { id: string; player: { avatar: string } }[];
+  buttonText: string;
+}
 
-const navigation = useNavigation<StackNavigationProp<AppRoutes>>();
+interface TeamsProps {
+  teams: Team[];
+}
 
+export default function Teams({ teams }: TeamsProps) {
+  const navigation = useNavigation<StackNavigationProp<AppRoutes>>();
 
+  const { user } = useAuth()
+
+  async function joinTeam({ matchId, playerId, teamId }: { matchId: number; playerId: string; teamId: number }) {
+    try {
+      const data = {
+        matchId,
+        playerId,
+        team: teamId
+    };
+
+    const response = await api.post("/matches/addPlayer", data)
+
+    console.log(response.data)
+    } catch (error) {
+      console.log(error)
+      const isAppError = error instanceof AppError;
+
+      const title = isAppError ? error.message : 'Não foi possível criar a conta. Tente novamente mais tarde';
+
+      console.log("ERROR: ", title)
+    }
+  }
 
   return (
     <Container>
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
         {teams.map((team) => (
           <TeamContainer key={team.id}>
-            <View style={{ flexDirection: "row" }}>
-              <TeamTitle>{team.name}</TeamTitle>
-              {team.isPrivate ? (
-                <AntDesign name="lock" size={24} color="white" style={{ marginLeft: 5 }} />
-              ) : (
-                <Feather name="globe" size={24} color="white" style={{ marginLeft: 5 }} />
-              )}
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <TeamTitle>{team.isTeamA ? "Time A" : "Time B"}</TeamTitle>
+
+              <Feather
+                name="globe"
+                size={24}
+                color="white"
+                style={{ marginLeft: 5 }}
+              />
+
             </View>
+
             <TeamMembers>
-              {team.members.map((member, index) => (
-                <MemberImage key={index} source={member} />
-              ))}
+              {team.players && team.players.length > 0 ? (
+                team.players.map((player) => (
+                  <MemberImage key={player.id} source={{ uri: player.player.avatar }} />
+                ))
+              ) : (
+                <ButtonText>Nenhum membro ainda</ButtonText>
+              )}
             </TeamMembers>
-            <JoinButton>
-              <ButtonText>{team.buttonText}</ButtonText>
+
+            <JoinButton onPress={() =>
+              joinTeam({ matchId: team.matchId, playerId: user.id, teamId: team.id })
+            }>
+              <ButtonText>Entrar no time</ButtonText>
             </JoinButton>
           </TeamContainer>
         ))}
-        <CreateTeamButton>
-          <ButtonText onPress={() => navigation.navigate('TeamDetails')}>Criar Time</ButtonText>
-          <Feather name="arrow-right" size={18} color="white" />
-        </CreateTeamButton>
+
       </ScrollView>
     </Container>
   );

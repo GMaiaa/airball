@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
-import { Container,CourtHeader,ImageCourt,Title,Line,Content,IconContainer,TabContainer,TabButton,TabButtonText,MatchName,ProfileRow,ProfilePic,UserIcon,GhostText,FormRow,Label,InputContainer,InputLine,GameDetails,DetailRow,DetailIcon,DetailText,PlayButton,ButtonText } from "./styles";
+import { Container, CourtHeader, ImageCourt, Title, Line, Content, IconContainer, TabContainer, TabButton, TabButtonText, MatchName, ProfileRow, ProfilePic, UserIcon, GhostText, FormRow, Label, InputContainer, InputLine, GameDetails, DetailRow, DetailIcon, DetailText, PlayButton, ButtonText } from "./styles";
 import { Header } from "@components/Header";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -16,10 +16,10 @@ type RouteParamsProps = {
   matchId: string;
 }
 
-export default function MatchDetails(){
+export default function MatchDetails() {
   const [selectedTab, setSelectedTab] = useState("Jogo");
   const [isLoading, setIsLoading] = useState(true);
-  const [match, setMatch] = useState<any>(null); 
+  const [match, setMatch] = useState<any>(null);
   const frequencia = "Semanal";
   const data = new Date().toLocaleDateString();
   const horario = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -50,7 +50,7 @@ export default function MatchDetails(){
   }
 
   const renderContent = () => {
-    
+
     switch (selectedTab) {
       case "Jogo":
         return (
@@ -58,27 +58,10 @@ export default function MatchDetails(){
             <Container>
               <Content>
                 <FormRow>
-                  <InputLine />
-                  <InputContainer>
-                    <Label>Frequência</Label>
-                    <DetailIcon name="sync" size={24} color="white" />
-                    <DetailText>{frequencia}</DetailText>
-                  </InputContainer>
-                  <InputLine />
-                </FormRow>
-                <FormRow>
                   <InputContainer>
                     <Label>Data</Label>
                     <DetailIcon name="calendar-alt" size={24} color="white" />
-                    <DetailText>{data}</DetailText>
-                  </InputContainer>
-                  <InputLine />
-                </FormRow>
-                <FormRow>
-                  <InputContainer>
-                    <Label>Horário</Label>
-                    <DetailIcon name="clock" size={24} color="white" />
-                    <DetailText>{horario}</DetailText>
+                    <DetailText>{match ? new Date(match.date).toLocaleString() : "Carregando..."}</DetailText>
                   </InputContainer>
                   <InputLine />
                 </FormRow>
@@ -86,7 +69,7 @@ export default function MatchDetails(){
                   <InputContainer>
                     <Label>Quadra</Label>
                     <DetailIcon name="basketball-ball" size={24} color="white" />
-                    <DetailText>{quadra}</DetailText>
+                    <DetailText>{match ? match.court.type : "Carregando..."}</DetailText>
                   </InputContainer>
                   <InputLine />
                 </FormRow>
@@ -111,7 +94,7 @@ export default function MatchDetails(){
         );
       case "Times":
         return (
-          <Teams/>
+          <Teams teams={match.teams}/>
         );
       default:
         return null;
@@ -128,19 +111,24 @@ export default function MatchDetails(){
       <Line />
       <CourtHeader>
         <ImageCourt source={CourtIllustration} />
-        <Title>Teste</Title>
+        <Title>{match?.court?.name || "Carregando..."}</Title>
         <IconContainer>
           <AntDesign name="sharealt" size={24} color="white" />
           <AntDesign name="hearto" size={24} color="white" />
         </IconContainer>
-        <MatchName>Baskabira</MatchName>
+        <MatchName>
+          {match
+            ? `Team ${match.teams[0]?.players[0]?.player?.name || "A"} vs Team ${match.teams[1]?.players[0]?.player?.name || "B"
+            }`
+            : "Carregando..."}
+        </MatchName>
         <ProfileRow>
-          <ProfilePic source={require("@assets/avatar.png")} />
-          <ProfilePic source={require("@assets/avatar.png")} />
-          <ProfilePic source={require("@assets/avatar.png")} />
+          <ProfilePic source={require("@assets/avatarDefault.png")} />
           <UserIcon>
             <FontAwesome5 name="user-alt" color="black" />
-            <GhostText>10</GhostText>
+            <GhostText>
+              {match ? match.teams[0]?.players.length + match.teams[1]?.players.length : "0"}
+            </GhostText>
           </UserIcon>
         </ProfileRow>
       </CourtHeader>

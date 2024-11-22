@@ -8,9 +8,9 @@ import { useAuth } from '@hooks/useAuth';
 import { api } from '@services/api';
 import { AppError } from '@utils/AppError';
 import { ListEmpty } from '@components/ListEmpty';
-import { useNavigation } from 'expo-router';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { AppRoutes } from '@routes/app.routes';
+import { useNavigation } from '@react-navigation/native';
 
 
 

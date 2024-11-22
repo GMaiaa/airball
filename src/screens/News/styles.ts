@@ -10,7 +10,7 @@ export const Container = styled.SafeAreaView`
 export const HeaderNews = styled.View`
   flex-direction: row;
   align-items: center; 
-  padding: 10px; 
+  padding: 30px; 
 `;
 
 export const TitleHeader = styled.Text`

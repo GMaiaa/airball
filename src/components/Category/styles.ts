@@ -20,5 +20,5 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
 export const CategoryText = styled.Text<ContainerProps>`
     color: ${({ isActive, theme }) => isActive ? theme.COLORS.GRAY_100 : theme.COLORS.GRAY_200};
     font-family: ${({theme}) => theme.FONT_FAMILY.BOLD};
-    font-size: ${({theme}) => theme.FONT_SIZE.MD};
+    font-size: ${({theme}) => theme.FONT_SIZE.MD}px;
 `;

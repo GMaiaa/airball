@@ -23,12 +23,11 @@ import CardComponent from '@components/MatchCard';
 import CreateGameScreen from "@screens/NewGame";
 import CommentsPage from "@screens/Comments";
 import CourtIllustration from "@assets/Court.png";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { AppError } from "@utils/AppError";
 import { api } from "@services/api";
 import { Loading } from "@components/Loading"; 
 import { ListEmpty } from "@components/ListEmpty";
-import { useNavigation } from "expo-router";
 import { AppRoutes } from "@routes/app.routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 

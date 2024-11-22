@@ -176,7 +176,7 @@ export const DetailIcon = styled(FontAwesome5).attrs({
   size: 24,
   color: "white",
 })`
-  margin-right: 30%; 
+  margin-left: 20px; 
 `;
 
 export const DetailText = styled.Text`

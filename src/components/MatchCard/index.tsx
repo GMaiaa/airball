@@ -21,11 +21,11 @@ interface MatchCardProps {
   onPress: () => void; 
 }
 
-const MatchCard: React.FC<MatchCardProps> = ({ title, timestamp, location, userCount, size = 'large', width }) => {
+const MatchCard: React.FC<MatchCardProps> = ({ title, timestamp, location, userCount, size = 'large', width, onPress }) => {
   const navigation = useNavigation<NativeStackNavigationProp<AppRoutes>>();
 
   return (
-    <TouchableOpacity activeOpacity={0.7}>
+    <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
       <Card size={size} width={width}>
         <Title size={size}>{title}</Title>
         <ProfileRow>
